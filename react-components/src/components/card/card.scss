@@ -2,3 +2,57 @@
   width: 15px;
   height: 15px;
 }
+
+.card__image {
+  width: 200px;
+  height: 200px;
+}
+
+.card {
+  width: 200px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cashback {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.cashback__value {
+  margin-left: 5px;
+  margin-right: 10px;
+  color: #e31235;
+  font-size: 18px;
+}
+
+.title__card {
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.prices {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.new__price { 
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.old__price { 
+  margin-left: 10px;
+  text-decoration: line-through;
+  color: #8e8e93;
+}
+
+.disctiption__cashback {
+  color: #8e8e93;
+}

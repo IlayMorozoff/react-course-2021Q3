@@ -1,6 +1,6 @@
 import { IData } from './interfaces';
 
-const store: IData[] = [
+const state: IData[] = [
   {
     titleCard: 'Smartphone Xiaomi Redmi 9A 32GB Peacock Green',
     imageURL: './../assets/xiaomi.jpg',
@@ -18,7 +18,7 @@ const store: IData[] = [
     id: 2,
   },
   {
-    titleCard: 'Smartphone Apple iPhone 11 128GB (PRODUCT)RED (MHDK3RU/A)',
+    titleCard: 'Smartphone Apple iPhone 11 128GB (PRODUCT) RED',
     imageURL: './../assets/iphone11.jpg',
     newPrice: '52 990 RUB',
     oldPrice: '58 990 RUB',
@@ -42,13 +42,29 @@ const store: IData[] = [
     id: 5,
   },
   {
-    titleCard: 'Смартфон Apple iPhone 11 64GB Yellow (MHDE3RU/A)',
+    titleCard: 'Smartphone Apple iPhone 11 64GB Yellow (MHDE3RU/A)',
     imageURL: './../assets/iphoneGold.jpg',
     newPrice: '46 990 RUB',
     oldPrice: '53 990 RUB',
     cashBackValue: '+1335',
     id: 6,
   },
+  {
+    titleCard: 'Smartphone Apple iPhone 11 128GB Purple',
+    imageURL: './../assets/iphonePurle.jpg',
+    newPrice: '52 990 RUB',
+    oldPrice: '58 990 RUB',
+    cashBackValue: '+1590',
+    id: 7,
+  },
+  {
+    titleCard: 'Smartphone Huawei P40 Lite Crush Green (JNY-LX1)',
+    imageURL: './../assets/huawei2.jpg',
+    newPrice: '46 990 RUB',
+    oldPrice: '53 990 RUB',
+    cashBackValue: '+1335',
+    id: 8,
+  },
 ];
 
-export default store;
+export default state;

@@ -1,3 +1,5 @@
+import './add-cart-btn.scss';
+
 const AddCartBtn = () => {
   return (
     <button className="addToCart" type="button">
