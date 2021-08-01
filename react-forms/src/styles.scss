@@ -2,7 +2,8 @@ body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
-.wrapper {
-  display:flex;
+#root {
+  display: flex;
   flex-direction: column;
+  align-items: center;
 }

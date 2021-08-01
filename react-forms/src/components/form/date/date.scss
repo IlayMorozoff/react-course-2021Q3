@@ -1,0 +1,21 @@
+.input_date {
+  margin-left: 10px;
+  font-family: arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: lighten(#5e411b,40%);
+  outline: none;
+  border: 0;
+  border-radius: 10px;
+  padding: 3px;
+  margin-top: 10px;
+}
+
+.date__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
