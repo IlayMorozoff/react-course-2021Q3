@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-useless-constructor */
 import { PureComponent } from 'react';
 import CardContainer from '../card-container/card-container';
 
@@ -23,10 +22,10 @@ class App extends PureComponent<IPropsApp, IStateApp> {
   addCard = (card: ICard) => {
     const newCard: ICard = {
       nicknameValue: card.nicknameValue,
-      dateBirth: '',
-      gender: '',
-      country: '',
-      whatLiked: [],
+      dateBirth: card.dateBirth,
+      gender: card.gender,
+      country: card.country,
+      whatLiked: card.whatLiked,
     };
     this.setState(({ cards }) => {
       const newState = cards.slice();

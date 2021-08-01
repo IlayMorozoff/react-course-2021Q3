@@ -2,14 +2,50 @@
 import { PureComponent } from 'react';
 import { IPropsCheckbox } from '../../interfaces';
 
-export default class Checkbox extends PureComponent<IPropsCheckbox> {
+interface IStateCheckbox {
+  isChekedCheckboxs: string[];
+}
+
+export default class Checkbox extends PureComponent<IPropsCheckbox, IStateCheckbox> {
+  constructor(props: IPropsCheckbox) {
+    super(props);
+    this.state = {
+      isChekedCheckboxs: [],
+    };
+  }
+
+  onChangeWhatLiked = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState(({ isChekedCheckboxs }) => {
+      const newIsChekedCheckboxs = isChekedCheckboxs.slice();
+      const isElement = newIsChekedCheckboxs.includes(e.target.value);
+      newIsChekedCheckboxs.push(e.target.value);
+      const { onAddWhatLikedFromWrap } = this.props;
+      if (isElement) {
+        const newArr = newIsChekedCheckboxs.filter((item) => e.target.value !== item);
+        onAddWhatLikedFromWrap(newArr);
+        return {
+          isChekedCheckboxs: newArr,
+        };
+      }
+      onAddWhatLikedFromWrap(newIsChekedCheckboxs);
+      return {
+        isChekedCheckboxs: newIsChekedCheckboxs,
+      };
+    });
+  };
+
   render() {
     const { checkboxsData } = this.props;
-
     const checkboxs = checkboxsData.map((checkbox) => {
       return (
         <div key={checkbox}>
-          <input className="checkbox" type="checkbox" id={checkbox} value={checkbox} />
+          <input
+            className="checkbox"
+            type="checkbox"
+            id={checkbox}
+            value={checkbox}
+            onChange={this.onChangeWhatLiked}
+          />
           <label className="label__checkbox" htmlFor={checkbox}>
             {checkbox}
           </label>

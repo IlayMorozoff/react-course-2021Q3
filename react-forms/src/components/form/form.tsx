@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PureComponent } from 'react';
 import ButtonSubmit from '../button/button';
@@ -16,6 +17,7 @@ interface IStateForm {
   gender: string;
   country: string;
   whatLiked: string[];
+  isShow?: boolean;
 }
 
 export default class Form extends PureComponent<IPropsForm, IStateForm> {
@@ -29,15 +31,11 @@ export default class Form extends PureComponent<IPropsForm, IStateForm> {
       gender: '',
       country: '',
       whatLiked: [],
+      isShow: false,
     };
 
     this.genders = ['male', 'female'];
   }
-
-  addNewCard = (card: ICard) => {
-    const { onCardAdd } = this.props;
-    onCardAdd(card);
-  };
 
   // пригнал nicknameValue
   onAddNewNickname = (nicknameValue: string) => {
@@ -67,26 +65,47 @@ export default class Form extends PureComponent<IPropsForm, IStateForm> {
     });
   };
 
+  // пригнал checkboxs
+  onAddWhatLiked = (whatLiked: string[]) => {
+    this.setState({
+      whatLiked,
+    });
+  };
+
   onSumbitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const { onCardAdd } = this.props;
+    const newCardData = {
+      nicknameValue: this.state.nicknameValue,
+      dateBirth: this.state.dateBirth,
+      gender: this.state.gender,
+      country: this.state.country,
+      whatLiked: this.state.whatLiked,
+    };
+    onCardAdd(newCardData);
+  };
+
+  onShowForm = () => {
+    this.setState({
+      isShow: true,
+    });
   };
 
   render() {
     const { countries, checkboxsData } = this.props;
-    const { nicknameValue, dateBirth, gender, country, whatLiked } = this.state;
+    const { isShow } = this.state;
     const radioButtons = this.genders.map((genderItem) => {
       return (
         <RadioButton gender={genderItem} key={genderItem} onAddGenderItem={this.onAddGender} />
       );
     });
-    window.state = this.state;
     return (
       <form className="form" onSubmit={this.onSumbitForm}>
         <Nickname onAddNickname={this.onAddNewNickname} />
         <DateBirth onAddDate={this.onAddDateBirth} />
         <div className="radio__group">{radioButtons}</div>
         <Select countries={countries} onAddCountry={this.onAddCountry} />
-        <CheckboxWrapper checkboxsData={checkboxsData} />
+        <CheckboxWrapper checkboxsData={checkboxsData} onAddWhatLiked={this.onAddWhatLiked} />
         <Switcher />
         <ButtonSubmit />
       </form>

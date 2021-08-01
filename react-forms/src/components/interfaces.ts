@@ -33,8 +33,10 @@ export interface IPropsRadioButton {
 
 export interface IPropsCheckboxWrapper {
   checkboxsData: string[];
+  onAddWhatLiked: (whatLiked: string[]) => void;
 }
 
 export interface IPropsCheckbox {
   checkboxsData: string[];
+  onAddWhatLikedFromWrap: (whatLiked: string[]) => void;
 }
