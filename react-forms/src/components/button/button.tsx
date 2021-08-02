@@ -1,12 +1,13 @@
 import { PureComponent } from 'react';
 import './button.scss';
 
-// interface IButtonSubmit {
-//   onClickSumbitForm: (nickname: string) => void;
-// }
+interface IStateButtonSubmit {
+  disabled: boolean;
+}
 
-export default class ButtonSubmit extends PureComponent<{}> {
+export default class ButtonSubmit extends PureComponent<IStateButtonSubmit> {
   render() {
-    return <input className="button" type="submit" value="Submit" />;
+    const { disabled } = this.props;
+    return <input className="button" type="submit" value="Submit" disabled={!disabled} />;
   }
 }

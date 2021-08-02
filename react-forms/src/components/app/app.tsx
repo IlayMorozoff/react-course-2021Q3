@@ -3,6 +3,7 @@ import CardContainer from '../card-container/card-container';
 
 import Form from '../form/form';
 import { ICard, IPropsApp, IStateApp } from '../interfaces';
+import SuccessPopup from '../success-popup/success-popup';
 import './app.scss';
 
 class App extends PureComponent<IPropsApp, IStateApp> {
@@ -10,13 +11,8 @@ class App extends PureComponent<IPropsApp, IStateApp> {
     super(props);
     this.state = {
       cards: [],
+      isSubmit: false,
     };
-  }
-
-  componentDidMount() {
-    // this.addCard();
-    // this.addCard();
-    // this.addCard();
   }
 
   addCard = (card: ICard) => {
@@ -36,12 +32,31 @@ class App extends PureComponent<IPropsApp, IStateApp> {
     });
   };
 
+  onShowSuccess = (isSubmit: boolean) => {
+    this.setState({
+      isSubmit,
+    });
+  };
+
+  // onShowForm = (isShowed: boolean) => {
+
+  // }
+
   render() {
     const { countries, checkboxsData } = this.props;
-    const { cards } = this.state;
+    const { cards, isSubmit } = this.state;
+    const form = (
+      <Form
+        countries={countries}
+        checkboxsData={checkboxsData}
+        onCardAdd={this.addCard}
+        onShowSuccess={this.onShowSuccess}
+      />
+    );
+    const success = isSubmit ? <SuccessPopup onShowForm={this.onShowSuccess} /> : form;
     return (
       <>
-        <Form countries={countries} checkboxsData={checkboxsData} onCardAdd={this.addCard} />
+        {success}
         <CardContainer onCardAdded={this.addCard} cards={cards} />
       </>
     );

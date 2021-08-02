@@ -7,6 +7,7 @@ interface IStateNickname {
 
 interface IPropsNickname {
   onAddNickname: (nickname: string) => void;
+  onCheckValidNickname: (isValidNickname: boolean) => void;
 }
 
 export default class Nickname extends PureComponent<IPropsNickname, IStateNickname> {
@@ -19,11 +20,21 @@ export default class Nickname extends PureComponent<IPropsNickname, IStateNickna
 
   onChangeNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     const nicknameValue = e.target.value;
-    this.setState({
-      nicknameValue,
-    });
-    const { onAddNickname } = this.props;
-    onAddNickname(nicknameValue);
+    const regExp = /[a-zA-Z]/;
+    const isValid = regExp.test(nicknameValue);
+    const { onAddNickname, onCheckValidNickname } = this.props;
+    if (isValid) {
+      this.setState({
+        nicknameValue,
+      });
+      onAddNickname(nicknameValue);
+      onCheckValidNickname(isValid);
+    } else {
+      this.setState({
+        nicknameValue,
+      });
+      onCheckValidNickname(isValid);
+    }
   };
 
   render() {
@@ -37,7 +48,7 @@ export default class Nickname extends PureComponent<IPropsNickname, IStateNickna
             type="text"
             id="name"
             placeholder="Enter your nickname"
-            onInput={this.onChangeNickname}
+            onChange={this.onChangeNickname}
             value={nicknameValue}
           />
         </label>

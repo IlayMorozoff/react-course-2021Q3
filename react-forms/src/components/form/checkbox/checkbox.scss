@@ -117,33 +117,11 @@
 .wrapper__switcher {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .consent {
   margin-right: 20px;
 }
-// Center & dribbble
-// body {
-//   min-height: 100vh;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   flex-direction: column;
-//   position: relative;
-//   background: #E8EBFB;
-//   .switch {
-//       & + .switch {
-//           margin-top: 32px;
-//       }
-//   }
-//   .dribbble {
-//       position: fixed;
-//       display: block;
-//       right: 20px;
-//       bottom: 20px;
-//       img {
-//           display: block;
-//           height: 28px;
-//       }
-//   }
+
 // }

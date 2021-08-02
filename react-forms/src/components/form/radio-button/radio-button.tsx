@@ -2,14 +2,12 @@ import { PureComponent } from 'react';
 import { IPropsRadioButton } from '../../interfaces';
 import './radio-button.scss';
 
-interface IStateRadioButton {
-  genderState: string;
-}
-
-export default class RadioButton extends PureComponent<IPropsRadioButton, IStateRadioButton> {
+export default class RadioButton extends PureComponent<IPropsRadioButton> {
   onChangeGender = (e: React.ChangeEvent<HTMLInputElement>) => {
     const genderState = e.target.value;
-    const { onAddGenderItem } = this.props;
+    const { onAddGenderItem, onCheckValidRadio } = this.props;
+    const isCheked = e.target.checked;
+    onCheckValidRadio(isCheked);
     onAddGenderItem(genderState);
   };
 

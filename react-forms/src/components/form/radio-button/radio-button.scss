@@ -1,8 +1,8 @@
 .radio__group {
   display: flex;
-  // flex-direction: column;
   align-items: center;
-  justify-content: center;
+
+	justify-content: space-evenly;
 }
 
 .radio__wrapper {

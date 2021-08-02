@@ -6,11 +6,15 @@ import './checkbox.scss';
 
 export default class CheckboxWrapper extends PureComponent<IPropsCheckboxWrapper> {
   render() {
-    const { checkboxsData, onAddWhatLiked } = this.props;
+    const { checkboxsData, onAddWhatLiked, onCheckValidCheckboxBtn } = this.props;
     return (
       <div className="wrapper__checkbox">
         <div className="label__text label label__checkbox">What did you like most about us?</div>
-        <Checkbox checkboxsData={checkboxsData} onAddWhatLikedFromWrap={onAddWhatLiked} />
+        <Checkbox
+          checkboxsData={checkboxsData}
+          onAddWhatLikedFromWrap={onAddWhatLiked}
+          onCheckValidCheckboxBtn={onCheckValidCheckboxBtn}
+        />
       </div>
     );
   }

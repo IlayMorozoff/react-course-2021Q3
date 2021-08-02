@@ -1,5 +1,4 @@
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PureComponent } from 'react';
 import ButtonSubmit from '../button/button';
 import DateBirth from './date/date-birth';
@@ -7,9 +6,10 @@ import Nickname from './nickname/nickname';
 import RadioButton from './radio-button/radio-button';
 import Select from './select/select';
 import './form.scss';
-import { ICard, IPropsForm } from '../interfaces';
+import { IPropsForm } from '../interfaces';
 import CheckboxWrapper from './checkbox/checkbox-wrapper';
 import Switcher from './checkbox/switcher';
+import Error from '../error/error';
 
 interface IStateForm {
   nicknameValue: string;
@@ -17,7 +17,12 @@ interface IStateForm {
   gender: string;
   country: string;
   whatLiked: string[];
-  isShow?: boolean;
+  isValidRadioBtn: boolean;
+  isValidCheckbox: boolean;
+  isValidSwitcher: boolean;
+  isValidSelect: boolean;
+  isValidNickname: boolean;
+  isValidDate: boolean;
 }
 
 export default class Form extends PureComponent<IPropsForm, IStateForm> {
@@ -31,41 +36,41 @@ export default class Form extends PureComponent<IPropsForm, IStateForm> {
       gender: '',
       country: '',
       whatLiked: [],
-      isShow: false,
+      isValidRadioBtn: false,
+      isValidCheckbox: false,
+      isValidSwitcher: false,
+      isValidSelect: false,
+      isValidNickname: false,
+      isValidDate: false,
     };
 
     this.genders = ['male', 'female'];
   }
 
-  // пригнал nicknameValue
   onAddNewNickname = (nicknameValue: string) => {
     this.setState({
       nicknameValue,
     });
   };
 
-  // пригнал datebirth
   onAddDateBirth = (dateBirth: string) => {
     this.setState({
       dateBirth,
     });
   };
 
-  // пригнал radiobytton
   onAddGender = (gender: string) => {
     this.setState({
       gender,
     });
   };
 
-  // пригнал select
   onAddCountry = (country: string) => {
     this.setState({
       country,
     });
   };
 
-  // пригнал checkboxs
   onAddWhatLiked = (whatLiked: string[]) => {
     this.setState({
       whatLiked,
@@ -74,7 +79,7 @@ export default class Form extends PureComponent<IPropsForm, IStateForm> {
 
   onSumbitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { onCardAdd } = this.props;
+    const { onCardAdd, onShowSuccess } = this.props;
     const newCardData = {
       nicknameValue: this.state.nicknameValue,
       dateBirth: this.state.dateBirth,
@@ -83,31 +88,116 @@ export default class Form extends PureComponent<IPropsForm, IStateForm> {
       whatLiked: this.state.whatLiked,
     };
     onCardAdd(newCardData);
+    this.setState({
+      nicknameValue: '',
+      dateBirth: '',
+      gender: '',
+      country: '',
+      whatLiked: [],
+    });
+    onShowSuccess(true);
   };
 
-  onShowForm = () => {
+  onCheckValidRadio = (isValidRadioBtn: boolean) => {
     this.setState({
-      isShow: true,
+      isValidRadioBtn,
+    });
+  };
+
+  onCheckValidCheckbox = (isValidCheckbox: boolean) => {
+    this.setState({
+      isValidCheckbox,
+    });
+  };
+
+  onCheckValidSwitcher = (isValidSwitcher: boolean) => {
+    this.setState({
+      isValidSwitcher,
+    });
+  };
+
+  onCheckValidSelect = (isValidSelect: boolean) => {
+    this.setState({
+      isValidSelect,
+    });
+  };
+
+  onCheckValidNickname = (isValidNickname: boolean) => {
+    this.setState({
+      isValidNickname,
+    });
+  };
+
+  onCheckValidDate = (isValidDate: boolean) => {
+    this.setState({
+      isValidDate,
     });
   };
 
   render() {
     const { countries, checkboxsData } = this.props;
-    const { isShow } = this.state;
+    const {
+      isValidRadioBtn,
+      isValidCheckbox,
+      isValidSwitcher,
+      isValidSelect,
+      isValidNickname,
+      isValidDate,
+    } = this.state;
+    const disableButtonForm =
+      isValidRadioBtn &&
+      isValidCheckbox &&
+      isValidSwitcher &&
+      isValidSelect &&
+      isValidNickname &&
+      isValidDate;
+    const radioError = isValidRadioBtn ? null : <Error title="choose your gender" />;
+    const checkboxError = isValidCheckbox ? null : <Error title="select one or more options" />;
+    const selectError = isValidSelect ? null : <Error title="Сhoose any country" />;
+    const nicknameError = isValidNickname ? null : (
+      <Error title="the name must consist of English letters and consist of at least 1 character" />
+    );
+    const dateError = isValidDate ? null : (
+      <Error title="your date of birth must be no later than January 1, 1990" />
+    );
+
     const radioButtons = this.genders.map((genderItem) => {
       return (
-        <RadioButton gender={genderItem} key={genderItem} onAddGenderItem={this.onAddGender} />
+        <RadioButton
+          gender={genderItem}
+          key={genderItem}
+          onAddGenderItem={this.onAddGender}
+          onCheckValidRadio={this.onCheckValidRadio}
+        />
       );
     });
     return (
       <form className="form" onSubmit={this.onSumbitForm}>
-        <Nickname onAddNickname={this.onAddNewNickname} />
-        <DateBirth onAddDate={this.onAddDateBirth} />
+        <Nickname
+          onAddNickname={this.onAddNewNickname}
+          onCheckValidNickname={this.onCheckValidNickname}
+        />
+        {nicknameError}
+        <DateBirth onAddDate={this.onAddDateBirth} onCheckValidDate={this.onCheckValidDate} />
+        {dateError}
         <div className="radio__group">{radioButtons}</div>
-        <Select countries={countries} onAddCountry={this.onAddCountry} />
-        <CheckboxWrapper checkboxsData={checkboxsData} onAddWhatLiked={this.onAddWhatLiked} />
-        <Switcher />
-        <ButtonSubmit />
+        {radioError}
+        <Select
+          countries={countries}
+          onAddCountry={this.onAddCountry}
+          onCheckValidSelectForm={this.onCheckValidSelect}
+        />
+        {selectError}
+        <>
+          <CheckboxWrapper
+            checkboxsData={checkboxsData}
+            onAddWhatLiked={this.onAddWhatLiked}
+            onCheckValidCheckboxBtn={this.onCheckValidCheckbox}
+          />
+          {checkboxError}
+        </>
+        <Switcher onCheckSwticher={this.onCheckValidSwitcher} />
+        <ButtonSubmit disabled={disableButtonForm} />
       </form>
     );
   }

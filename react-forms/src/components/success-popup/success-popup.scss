@@ -1,0 +1,18 @@
+.popup__wrapper {
+  width: 320px;
+  height: 320px;
+  background-color: rgb(8, 140, 211);
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px 0px #000000;
+  flex-direction: column;
+}
+
+.success__text {
+  padding: 50px;
+  font-size: 20px;
+  text-align: center;
+}

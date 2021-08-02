@@ -19,15 +19,21 @@ export default class Checkbox extends PureComponent<IPropsCheckbox, IStateCheckb
       const newIsChekedCheckboxs = isChekedCheckboxs.slice();
       const isElement = newIsChekedCheckboxs.includes(e.target.value);
       newIsChekedCheckboxs.push(e.target.value);
-      const { onAddWhatLikedFromWrap } = this.props;
+      const { onAddWhatLikedFromWrap, onCheckValidCheckboxBtn } = this.props;
       if (isElement) {
         const newArr = newIsChekedCheckboxs.filter((item) => e.target.value !== item);
         onAddWhatLikedFromWrap(newArr);
+        if (newArr.length) {
+          onCheckValidCheckboxBtn(true);
+        } else {
+          onCheckValidCheckboxBtn(false);
+        }
         return {
           isChekedCheckboxs: newArr,
         };
       }
       onAddWhatLikedFromWrap(newIsChekedCheckboxs);
+      onCheckValidCheckboxBtn(true);
       return {
         isChekedCheckboxs: newIsChekedCheckboxs,
       };

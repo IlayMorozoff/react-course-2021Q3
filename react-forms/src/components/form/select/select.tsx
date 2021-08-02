@@ -17,21 +17,32 @@ export default class Select extends React.PureComponent<IPropsSelect, IStateSele
 
   onChangeCounty = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const countryState = e.target.value;
-    this.setState({
-      countryState,
-    });
-    const { onAddCountry } = this.props;
-    onAddCountry(countryState);
+    const { onAddCountry, onCheckValidSelectForm } = this.props;
+    if (countryState) {
+      this.setState({
+        countryState,
+      });
+      onAddCountry(countryState);
+      onCheckValidSelectForm(true);
+    } else {
+      onCheckValidSelectForm(false);
+    }
   };
 
   render() {
     const { countries } = this.props;
     const { countryState } = this.state;
-    const countriesData = countries.map((country) => (
-      <option value={country} key={country}>
-        {country}
-      </option>
-    ));
+    const countriesData = countries.map((country, index) =>
+      index ? (
+        <option value={country} key={country}>
+          {country}
+        </option>
+      ) : (
+        <option className="option__hidden" value={country} key={country}>
+          your country
+        </option>
+      ),
+    );
     return (
       <div className="select__wrapper">
         <div className="select__label label">Сhoose your country:</div>

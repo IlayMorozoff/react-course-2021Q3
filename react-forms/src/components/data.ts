@@ -1,4 +1,5 @@
 const countries = [
+  '',
   'Russia',
   'Ukraine',
   'Belarus',
