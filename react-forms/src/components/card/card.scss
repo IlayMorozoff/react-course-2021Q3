@@ -4,7 +4,8 @@
   margin: 20px;
   padding: 30px;
   border-radius: 10px;
-  background-color: #accebe;;
+  background-color: #accebe;
+  text-align: center;
 }
 
 .title {
@@ -13,9 +14,10 @@
 }
 
 .person {
-  text-decoration: underline;
+  border-bottom: 3px solid rgb(255, 166, 0);
 }
 
-.consent__person {
+.what__person {
   margin-top: 10px;
+
 }

@@ -177,24 +177,24 @@ export default class Form extends PureComponent<IPropsForm, IStateForm> {
           onAddNickname={this.onAddNewNickname}
           onCheckValidNickname={this.onCheckValidNickname}
         />
-        {nicknameError}
+        <div className="error__wrapper">{nicknameError}</div>
         <DateBirth onAddDate={this.onAddDateBirth} onCheckValidDate={this.onCheckValidDate} />
-        {dateError}
+        <div className="error__wrapper">{dateError}</div>
         <div className="radio__group">{radioButtons}</div>
-        {radioError}
+        <div className="error__wrapper">{radioError}</div>
         <Select
           countries={countries}
           onAddCountry={this.onAddCountry}
           onCheckValidSelectForm={this.onCheckValidSelect}
         />
-        {selectError}
+        <div className="error__wrapper">{selectError}</div>
         <>
           <CheckboxWrapper
             checkboxsData={checkboxsData}
             onAddWhatLiked={this.onAddWhatLiked}
             onCheckValidCheckboxBtn={this.onCheckValidCheckbox}
           />
-          {checkboxError}
+          <div className="error__wrapper">{checkboxError}</div>
         </>
         <Switcher onCheckSwticher={this.onCheckValidSwitcher} />
         <ButtonSubmit disabled={disableButtonForm} />

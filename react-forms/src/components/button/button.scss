@@ -20,4 +20,10 @@
     transition: all 0.25s;
     color: rgb(134, 1, 243);
   }
+
+  &:disabled {
+    background-color: rgba(88, 56, 232, 0.37);
+    color: rgba(255, 255, 255, 0.479);
+    cursor: default;
+  }
 }
