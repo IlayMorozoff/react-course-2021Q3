@@ -1,0 +1,9 @@
+.sort__wrapper {
+  display: flex;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.radio {
+  margin-left: 20px;
+}
