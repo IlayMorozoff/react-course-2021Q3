@@ -4,7 +4,9 @@ const SearchPanel = () => {
   return (
     <div className="search__panel__wrapper">
       <input className="search" type="text" placeholder="Search news" />
-      <button type="button">Search</button>
+      <button className="button" type="button">
+        Search
+      </button>
     </div>
   );
 };

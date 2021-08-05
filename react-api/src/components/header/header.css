@@ -1,0 +1,14 @@
+.links__list {
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  padding: 20px;
+  font-size: 22px;
+}
+
+.link {
+  color: #000;
+  font-weight: 600;
+}

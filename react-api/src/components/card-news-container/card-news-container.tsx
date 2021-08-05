@@ -5,6 +5,11 @@ const CardsNewsContainer = () => {
   return (
     <div className="card_container">
       <CardNews />
+      <CardNews />
+      <CardNews />
+      <CardNews />
+      <CardNews />
+      <CardNews />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import './counter-page.css';
 
 const CounterPages = () => {
@@ -8,12 +9,16 @@ const CounterPages = () => {
         <div className="page_number">23</div>
       </div>
       <div className="total_page counter">
-        <div className="title_total title">New per Page</div>
-        <div className="page_number">5</div>
+        <label className="title_total title" htmlFor="page_number">
+          News per Page
+        </label>
+        <input type="number" className="page_number" id="page_number" />
       </div>
       <div className="total_page counter">
-        <div className="title_total title">Current Page</div>
-        <div className="page_number">1</div>
+        <label className="title_total title" htmlFor="current">
+          Current Page
+        </label>
+        <input type="number" className="page_number" id="current" />
       </div>
     </div>
   );
