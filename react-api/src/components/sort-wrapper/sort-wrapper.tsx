@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { FC } from 'react';
 import './sort-wrapper.css';
 
-const SortWrapper = () => {
+const SortWrapper: FC = () => {
   return (
     <div className="sort__wrapper">
       <div className="title__sort title">Sort by: </div>

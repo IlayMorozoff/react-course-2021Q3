@@ -1,4 +1,6 @@
-const NumberPages = () => {
+import { FC } from 'react';
+
+const NumberPages: FC = () => {
   return (
     <div className="number_pages">
       <div className="current">Current page: 1</div>

@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { FC } from 'react';
 import './counter-page.css';
 
-const CounterPages = () => {
+const CounterPages: FC = () => {
   return (
     <div className="pages_counters">
       <div className="total_page counter">

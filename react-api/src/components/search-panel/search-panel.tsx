@@ -1,10 +1,36 @@
+import { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
+import { IPanelSearchProps } from '../interfaces';
 import './search-panel.css';
 
-const SearchPanel = () => {
+const SearchPanel: FC<IPanelSearchProps> = ({ onChangeSearchValue, onSend }) => {
+  const [searchValue, setSearchValue] = useState('');
+  // ChangeEvent<HTMLInputElement>
+  const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+    onChangeSearchValue(e.target.value);
+  };
+
+  const onChangeSearchEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+      onSend();
+    }
+  };
+
+  const onClickSearchButton = () => {
+    onSend();
+  };
+
   return (
     <div className="search__panel__wrapper">
-      <input className="search" type="text" placeholder="Search news" />
-      <button className="button" type="button">
+      <input
+        className="search"
+        type="text"
+        placeholder="Search news"
+        value={searchValue}
+        onChange={onChangeSearch}
+        onKeyDown={onChangeSearchEnter}
+      />
+      <button className="button" type="button" onClick={onClickSearchButton}>
         Search
       </button>
     </div>

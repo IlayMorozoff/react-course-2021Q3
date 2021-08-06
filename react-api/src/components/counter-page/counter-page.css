@@ -2,19 +2,15 @@
   display: flex;
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+.page_number::-webkit-outer-spin-button,
+.page_number::-webkit-inner-spin-button {
   -webkit-appearance: none; 
 }
 
-input[type='number'],
-input[type="number"]:hover,
-input[type="number"]:focus {
+.page_number,
+.page_number:hover,
+.page_number:focus {
   appearance: none;
   -moz-appearance: textfield;
   font-size: 20px;
-}
-
-.current {
-  
 }

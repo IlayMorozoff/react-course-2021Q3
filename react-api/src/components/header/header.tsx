@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import './header.css';
 
-const Header = () => {
+const Header: FC = () => {
   return (
     <header className="header">
       <div className="nav__wrapper">

@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import NumberPages from '../number-pages/number-pages';
 import './pagination.css';
 
-const Pagination = () => {
+const Pagination: FC = () => {
   return (
     <div className="pagination">
       <button className="button pagination_btn" type="button">

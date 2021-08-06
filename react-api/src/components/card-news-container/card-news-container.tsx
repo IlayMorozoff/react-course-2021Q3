@@ -1,17 +1,11 @@
-import CardNews from '../card-news/card-news';
+import { FC } from 'react';
+import NewsService from '../../services/news-service/news-service';
+import { INewsContainerProps } from '../interfaces';
 
-/* eslint-disable jsx-a11y/anchor-is-valid */
-const CardsNewsContainer = () => {
-  return (
-    <div className="card_container">
-      <CardNews />
-      <CardNews />
-      <CardNews />
-      <CardNews />
-      <CardNews />
-      <CardNews />
-    </div>
-  );
+export const newsApi = new NewsService();
+
+const CardsNewsContainer: FC<INewsContainerProps> = ({ news }) => {
+  return <div className="card_container">{news}</div>;
 };
 
 export default CardsNewsContainer;
