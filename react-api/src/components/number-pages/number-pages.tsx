@@ -1,10 +1,11 @@
 import { FC } from 'react';
+import { INumberPagesProps } from '../interfaces';
 
-const NumberPages: FC = () => {
+const NumberPages: FC<INumberPagesProps> = ({ allPagesValue, pagePagination }) => {
   return (
     <div className="number_pages">
-      <div className="current">Current page: 1</div>
-      <div className="all_pages">All pages: 35</div>
+      <div className="current">Current page: {pagePagination}</div>
+      <div className="all_pages">All pages: {allPagesValue}</div>
     </div>
   );
 };

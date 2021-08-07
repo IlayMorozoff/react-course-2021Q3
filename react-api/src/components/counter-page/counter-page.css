@@ -14,3 +14,11 @@
   -moz-appearance: textfield;
   font-size: 20px;
 }
+
+.error {
+  color: red;
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+}

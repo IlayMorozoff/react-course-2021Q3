@@ -2,7 +2,7 @@ import { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
 import { IPanelSearchProps } from '../interfaces';
 import './search-panel.css';
 
-const SearchPanel: FC<IPanelSearchProps> = ({ onChangeSearchValue, onSend }) => {
+const SearchPanel: FC<IPanelSearchProps> = ({ onChangeSearchValue, onSend, disableButton }) => {
   const [searchValue, setSearchValue] = useState('');
   // ChangeEvent<HTMLInputElement>
   const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,11 +26,17 @@ const SearchPanel: FC<IPanelSearchProps> = ({ onChangeSearchValue, onSend }) => 
         className="search"
         type="text"
         placeholder="Search news"
+        disabled={disableButton}
         value={searchValue}
         onChange={onChangeSearch}
         onKeyDown={onChangeSearchEnter}
       />
-      <button className="button" type="button" onClick={onClickSearchButton}>
+      <button
+        className="button"
+        type="button"
+        onClick={onClickSearchButton}
+        disabled={disableButton}
+      >
         Search
       </button>
     </div>
