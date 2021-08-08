@@ -52,7 +52,7 @@ const CounterPages: FC<ICounterPagesProps> = ({
       </div>
       <div className="total_page counter">
         <label className="title_total title" htmlFor="current">
-          Current Page
+          Go to the page:
         </label>
         <input
           type="number"
