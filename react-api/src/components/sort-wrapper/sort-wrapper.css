@@ -1,5 +1,6 @@
 .sort__wrapper {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 10px;
   font-size: 20px;
 }

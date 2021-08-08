@@ -1,8 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect, useState } from 'react';
+import About from '../about/about';
 import CardsNewsContainer, { newsApi } from '../card-news-container/card-news-container';
 import CardNews from '../card-news/card-news';
 import CounterPages from '../counter-page/counter-page';
+import DetailsNews from '../details-news/details-news';
+import Error404 from '../Error404/Error404';
 import Header from '../header/header';
 import { IArticle } from '../interfaces';
 import Loader from '../loader/loader';
@@ -125,6 +128,9 @@ export const App: FC = () => {
         {error}
       </div>
       <>{loader}</>
+      {/* <About />
+      <Error404 /> */}
+      {/* <DetailsNews /> */}
     </section>
   );
 };

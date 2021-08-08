@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { FC } from 'react';
 import './header.css';
 
@@ -9,12 +8,12 @@ const Header: FC = () => {
         <nav className="nav">
           <ul className="links__list">
             <li className="item">
-              <a href="#" className="link">
+              <a href="/" className="link">
                 Home
               </a>
             </li>
             <li className="item">
-              <a href="#" className="link">
+              <a href="/about" className="link">
                 About
               </a>
             </li>

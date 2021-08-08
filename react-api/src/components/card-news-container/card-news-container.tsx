@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import NewsService from '../../services/news-service/news-service';
 import { INewsContainerProps } from '../interfaces';
+import './card-news-container.css';
 
 export const newsApi = new NewsService();
 
