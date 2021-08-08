@@ -5,6 +5,7 @@ import CardNews from '../card-news/card-news';
 import CounterPages from '../counter-page/counter-page';
 import Header from '../header/header';
 import { IArticle } from '../interfaces';
+import Loader from '../loader/loader';
 import Pagination from '../pagination/pagination';
 import SearchPanel from '../search-panel/search-panel';
 import SortWrapper from '../sort-wrapper/sort-wrapper';
@@ -17,6 +18,8 @@ export const App: FC = () => {
   const [currentPage, setCurrentPage] = useState('1');
   const [allPagesValue, setAllPagesValue] = useState(0);
   const [pagePagination, setPagePagination] = useState(1);
+  const [sortValue, setSortValue] = useState('publishedAt');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     newsApi.getNews().then((data) => {
@@ -26,12 +29,15 @@ export const App: FC = () => {
       } else {
         setAllPagesValue(0);
       }
+      setLoading(false);
     });
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     newsApi.getNews(searchField, String(pagePagination), newsPerPage).then((data) => {
       setArticles(data);
+      setLoading(false);
       if (data[0].totalResults) {
         setAllPagesValue(data[0].totalResults);
       } else {
@@ -54,29 +60,25 @@ export const App: FC = () => {
 
   const onPaginationNext = async () => {
     setPagePagination((prevState) => prevState + 1);
-    console.log(pagePagination);
-    // await newsApi.getNews(searchField, String(pagePagination + 1), newsPerPage).then((data) => {
-    //   setArticles(data);
-    //   console.log(data)
-    //   if (data[0].totalResults) {
-    //     setAllPagesValue(data[0].totalResults);
-    //   } else {
-    //     setAllPagesValue(0);
-    //   }
-    // });
   };
 
   const onPaginationPrev = async () => {
     setPagePagination((prevState) => prevState - 1);
-    console.log(pagePagination);
+  };
+
+  const onSort = (sortBy: string) => {
+    setSortValue(sortBy);
   };
 
   const onSend = async () => {
-    await newsApi.getNews(searchField, currentPage, newsPerPage).then((data) => {
+    setLoading(true);
+    await newsApi.getNews(searchField, currentPage, newsPerPage, sortValue).then((data) => {
       setArticles(data);
       const totalPages = data[0].totalResults;
       setAllPagesValue(totalPages);
+      setPagePagination(Number(currentPage));
     });
+    setLoading(false);
   };
 
   const news = articles.map((article) => {
@@ -92,7 +94,10 @@ export const App: FC = () => {
         is given
       </div>
     );
+
   const disableButton = !(check <= 100);
+
+  const loader = loading ? <Loader /> : <CardsNewsContainer news={news} />;
   return (
     <section className="wrapper">
       <Header />
@@ -102,7 +107,7 @@ export const App: FC = () => {
           onSend={onSend}
           disableButton={disableButton}
         />
-        <SortWrapper />
+        <SortWrapper onSort={onSort} />
       </div>
       <div className="wrapper_pag_count">
         <Pagination
@@ -110,6 +115,7 @@ export const App: FC = () => {
           onPaginationNext={onPaginationNext}
           onPaginationPrev={onPaginationPrev}
           pagePagination={pagePagination}
+          newsPerPage={newsPerPage}
         />
         <CounterPages
           onChangeNewsPerPageApp={onChangeNewsPerPageApp}
@@ -118,7 +124,7 @@ export const App: FC = () => {
         />
         {error}
       </div>
-      <CardsNewsContainer news={news} />
+      <>{loader}</>
     </section>
   );
 };

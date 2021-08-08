@@ -8,14 +8,27 @@ const Pagination: FC<IPaginationProps> = ({
   onPaginationNext,
   onPaginationPrev,
   pagePagination,
+  newsPerPage,
 }) => {
+  const disabledBtnNext = Number(newsPerPage) * pagePagination >= 100;
+  const disabledBtnPrev = pagePagination <= 1;
   return (
     <div className="pagination">
-      <button className="button pagination_btn" type="button" onClick={onPaginationPrev}>
+      <button
+        className="button pagination_btn"
+        type="button"
+        disabled={disabledBtnPrev}
+        onClick={onPaginationPrev}
+      >
         Prev
       </button>
       <NumberPages allPagesValue={allPagesValue} pagePagination={pagePagination} />
-      <button className="button pagination_btn" type="button" onClick={onPaginationNext}>
+      <button
+        className="button pagination_btn"
+        type="button"
+        disabled={disabledBtnNext}
+        onClick={onPaginationNext}
+      >
         Next
       </button>
     </div>

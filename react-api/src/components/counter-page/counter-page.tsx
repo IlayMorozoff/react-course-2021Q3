@@ -16,8 +16,8 @@ const CounterPages: FC<ICounterPagesProps> = ({
       setNewsPerPage(e.target.value);
       onChangeNewsPerPageApp(e.target.value);
     } else {
-      setNewsPerPage('1');
-      onChangeNewsPerPageApp('1');
+      setNewsPerPage('');
+      onChangeNewsPerPageApp('10');
     }
   };
 
@@ -29,6 +29,9 @@ const CounterPages: FC<ICounterPagesProps> = ({
     ) {
       setCurrentPage(e.target.value);
       onChangeCurrentPageApp(e.target.value);
+    } else {
+      setCurrentPage('');
+      onChangeCurrentPageApp('1');
     }
   };
 
