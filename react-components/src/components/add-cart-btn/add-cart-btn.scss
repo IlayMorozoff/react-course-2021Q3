@@ -1,0 +1,20 @@
+.addToCart {
+  font-size: 20px;
+  background-color: #e31235;
+  transition: background-color .2s;
+  color: #fff;
+  height: 48px;
+  width: 100%;
+  padding: 0 2.3rem;
+  border: .1rem solid transparent;
+  border-radius: .4rem;
+  cursor: pointer;
+  transition: background-color .2s,color .2s,border-color .2s;
+
+  &:hover {
+    background-color: #bd0f2c;
+  }
+  
+  align-self: flex-end;
+}
+
