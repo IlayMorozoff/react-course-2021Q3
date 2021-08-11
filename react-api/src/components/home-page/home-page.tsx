@@ -23,9 +23,7 @@ const HomePage: FC = () => {
   const homeRef = useRef(null);
 
   useEffect(() => {
-    // setTimeout(() => {
     homeRef.current.classList.add('opacity');
-    // }, 1000);
   }, []);
 
   useEffect(() => {

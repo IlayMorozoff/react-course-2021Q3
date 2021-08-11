@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Link } from 'react-router-dom';
 import { IArticle } from '../interfaces';
 import './card-news.css';
@@ -15,15 +14,20 @@ const CardNews = (props: IArticle) => {
   const contentCod = encodeURIComponent(content);
   return (
     <Link
+      // to={`/details/${titleCod}}`}
       to={`/details/${idCod}/${titleCod}/${authorCod}/${descriptionCod}/${urlCod}/${urlToImageCod}/${contentCod}`}
       className="cardItem"
     >
       <div className="card news">
         <div className="title_card">{title}</div>
-        <h4 className="autor">By: {author || 'Unknown'}</h4>
+        <h4 className="autor">By: {author !== 'null' ? author : 'Unknown'}</h4>
         <div className="content_card">
           <div className="image_wrapper">
-            <img className="image" src={urlToImage || defaultImage} alt="something news" />
+            <img
+              className="image"
+              src={urlToImage !== 'null' ? urlToImage : defaultImage}
+              alt="something news"
+            />
           </div>
           <div className="content_wrap">
             <div className="discription">{description}</div>
