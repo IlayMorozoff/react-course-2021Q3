@@ -6,10 +6,6 @@ import defaultImage from '../../assets/default-image.jpg';
 
 const CardNews = (props: IArticle) => {
   const { author, content, description, title, url, urlToImage, id } = props;
-  // /details/:id/:title/:author/:description/:url/:urlToImage/:content"
-  // const cardId = encodeURIComponent(
-  //   `${id},,,/${title},,,/${author},,,/${description},,,/${url},,,/${urlToImage},,,/${content}`,
-  // );
   const idCod = encodeURIComponent(id);
   const titleCod = encodeURIComponent(title);
   const authorCod = encodeURIComponent(author);

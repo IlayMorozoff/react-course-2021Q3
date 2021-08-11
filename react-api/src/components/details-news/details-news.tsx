@@ -22,20 +22,6 @@ const DetailsNews: FC = () => {
   const urlDecode = decodeURIComponent(url);
   const urlToImageDecode = decodeURIComponent(urlToImage);
   const contentDecode = decodeURIComponent(content);
-  // const [, titleDe, authorDe, descriptionDe, urlDe, urlToImageDe, contentDe] =
-  //   decodeUrl.split(',,,/');
-
-  // const localStorageObj = {
-  //   title,
-  //   author,
-  //   description,
-  //   url,
-  //   urlToImage,
-  //   content,
-  // };
-  // localStorage.setItem('item', JSON.stringify(localStorageObj));
-  // const localObj = localStorage.getItem('item');
-  // const localObj1 = JSON.parse(localObj);
 
   return (
     <section className="details">
