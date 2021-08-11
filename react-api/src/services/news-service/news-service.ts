@@ -11,16 +11,7 @@ export default class NewsService {
     sortBy: string = 'publishedAt',
   ): Promise<IArticle[]> {
     const response = await fetch(
-      `${this.apiBase}"${keyWords}"&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}`,
-      {
-        method: 'GET',
-        headers: {
-          // 'X-Api-Key': 'fc29b5bc60cc47c5aaf721790009b177',
-          // 'X-Api-Key': '242c2b39893c4b1e86435c93c98524f1',
-          // 'X-Api-Key': '9d864b6a2d944129b18b6a405c831cb0',
-          // 'X-Api-Key': '26cba7b7a5a44c63a66ac72da1244686',
-        },
-      },
+      `${this.apiBase}"${keyWords}"&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}&apiKey=26cba7b7a5a44c63a66ac72da1244686`,
     );
     const { status } = response;
     if (status === 200) {

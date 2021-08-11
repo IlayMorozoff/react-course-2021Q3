@@ -6,6 +6,8 @@ module.exports = {
   devServer: {
     hot: true,
     open: true,
+    historyApiFallback: true,
+    contentBase: './dist',
   },
   devtool: 'cheap-module-source-map',
   plugins: [

@@ -25,9 +25,10 @@ body {
   font-size: 20px;
 }
 
-.wrapper {
+#root {
   max-width: 1200px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .button {

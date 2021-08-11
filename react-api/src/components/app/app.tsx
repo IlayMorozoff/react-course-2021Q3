@@ -1,137 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import About from '../about/about';
-import CardsNewsContainer, { newsApi } from '../card-news-container/card-news-container';
-import CardNews from '../card-news/card-news';
-import CounterPages from '../counter-page/counter-page';
 import DetailsNews from '../details-news/details-news';
 import Error404 from '../Error404/Error404';
 import Header from '../header/header';
+import HomePage from '../home-page/home-page';
 import { IArticle } from '../interfaces';
-import Loader from '../loader/loader';
-import Pagination from '../pagination/pagination';
-import SearchPanel from '../search-panel/search-panel';
-import SortWrapper from '../sort-wrapper/sort-wrapper';
 import './app.css';
 
+export const Context = React.createContext<IArticle[]>([]);
+
 export const App: FC = () => {
-  const [searchField, setSearchField] = useState('science');
-  const [articles, setArticles] = useState<Array<IArticle>>([]);
-  const [newsPerPage, setNewsPerPage] = useState('10');
-  const [currentPage, setCurrentPage] = useState('1');
-  const [allPagesValue, setAllPagesValue] = useState(0);
-  const [pagePagination, setPagePagination] = useState(1);
-  const [sortValue, setSortValue] = useState('publishedAt');
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    newsApi.getNews().then((data) => {
-      setArticles(data);
-      if (data[0].totalResults) {
-        setAllPagesValue(data[0].totalResults);
-      } else {
-        setAllPagesValue(0);
-      }
-      setLoading(false);
-    });
-  }, []);
-
-  useEffect(() => {
-    setLoading(true);
-    newsApi.getNews(searchField, String(pagePagination), newsPerPage).then((data) => {
-      setArticles(data);
-      setLoading(false);
-      if (data[0].totalResults) {
-        setAllPagesValue(data[0].totalResults);
-      } else {
-        setAllPagesValue(0);
-      }
-    });
-  }, [pagePagination]);
-
-  const onChangeSearch = (searchValue: string) => {
-    setSearchField(searchValue);
-  };
-
-  const onChangeNewsPerPageApp = (news: string) => {
-    setNewsPerPage(news);
-  };
-
-  const onChangeCurrentPageApp = (page: string) => {
-    setCurrentPage(page);
-  };
-
-  const onPaginationNext = async () => {
-    setPagePagination((prevState) => prevState + 1);
-  };
-
-  const onPaginationPrev = async () => {
-    setPagePagination((prevState) => prevState - 1);
-  };
-
-  const onSort = (sortBy: string) => {
-    setSortValue(sortBy);
-  };
-
-  const onSend = async () => {
-    setLoading(true);
-    await newsApi.getNews(searchField, currentPage, newsPerPage, sortValue).then((data) => {
-      setArticles(data);
-      const totalPages = data[0].totalResults;
-      setAllPagesValue(totalPages);
-      setPagePagination(Number(currentPage));
-    });
-    setLoading(false);
-  };
-
-  const news = articles.map((article) => {
-    return <CardNews {...article} key={article.id} />;
-  });
-
-  const check = Number(newsPerPage) * Number(currentPage);
-
-  const error =
-    check <= 100 ? null : (
-      <div className="error">
-        this API allows you to output only 100 news for free, so an error may occur when the value
-        is given
-      </div>
-    );
-
-  const disableButton = !(check <= 100);
-
-  const loader = loading ? <Loader /> : <CardsNewsContainer news={news} />;
   return (
-    <section className="wrapper">
+    <Router>
       <Header />
-      <div className="search_sort">
-        <SearchPanel
-          onChangeSearchValue={onChangeSearch}
-          onSend={onSend}
-          disableButton={disableButton}
+      <Switch>
+        <Route path="/" exact>
+          <HomePage />
+        </Route>
+        <Route path="/about" exact component={About} />
+        <Route
+          path="/details/:id/:title/:author/:description/:url/:urlToImage/:content"
+          exact
+          component={DetailsNews}
         />
-        <SortWrapper onSort={onSort} />
-      </div>
-      <div className="wrapper_pag_count">
-        <Pagination
-          allPagesValue={allPagesValue}
-          onPaginationNext={onPaginationNext}
-          onPaginationPrev={onPaginationPrev}
-          pagePagination={pagePagination}
-          newsPerPage={newsPerPage}
-        />
-        <CounterPages
-          onChangeNewsPerPageApp={onChangeNewsPerPageApp}
-          onChangeCurrentPageApp={onChangeCurrentPageApp}
-          allPagesValue={allPagesValue}
-        />
-        {error}
-      </div>
-      <>{loader}</>
-      {/* <About />
-      <Error404 /> */}
-      {/* <DetailsNews /> */}
-    </section>
+        <Route component={Error404} />
+      </Switch>
+    </Router>
   );
 };
 

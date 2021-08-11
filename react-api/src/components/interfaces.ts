@@ -61,3 +61,7 @@ interface ISourceServ {
   id: string | null;
   name: string | null;
 }
+
+export interface IDetailsNewsProps {
+  news: IArticle[];
+}

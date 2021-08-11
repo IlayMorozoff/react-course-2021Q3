@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+import { FC } from 'react';
 import './Error404.css';
 import ErrorImg from '../../assets/error404.png';
 
-const Error404 = () => {
+const Error404: FC = () => {
   return (
     <div className="error404">
       <div className="something">Something went wrong</div>
@@ -10,9 +12,9 @@ const Error404 = () => {
       </div>
       <div className="text__error">Page Not Found</div>
       <div className="back">
-        <a href="/" className="back_link button">
+        <Link to="/" className="back_link button">
           Go back to the Home page
-        </a>
+        </Link>
       </div>
     </div>
   );
