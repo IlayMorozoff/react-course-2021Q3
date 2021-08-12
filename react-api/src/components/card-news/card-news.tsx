@@ -4,20 +4,10 @@ import './card-news.css';
 import defaultImage from '../../assets/default-image.jpg';
 
 const CardNews = (props: IArticle) => {
-  const { author, content, description, title, url, urlToImage, id } = props;
-  const idCod = encodeURIComponent(id);
+  const { author, content, description, title, urlToImage } = props;
   const titleCod = encodeURIComponent(title);
-  const authorCod = encodeURIComponent(author);
-  const descriptionCod = encodeURIComponent(description);
-  const urlCod = encodeURIComponent(url);
-  const urlToImageCod = encodeURIComponent(urlToImage);
-  const contentCod = encodeURIComponent(content);
   return (
-    <Link
-      to={`/details/${titleCod}}`}
-      // to={`/details/${idCod}/${titleCod}/${authorCod}/${descriptionCod}/${urlCod}/${urlToImageCod}/${contentCod}`}
-      className="cardItem"
-    >
+    <Link to={`/details/${titleCod}}`} className="cardItem">
       <div className="card news">
         <div className="title_card">{title}</div>
         <h4 className="autor">By: {author !== 'null' ? author : 'Unknown'}</h4>
