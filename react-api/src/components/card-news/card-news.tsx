@@ -14,8 +14,8 @@ const CardNews = (props: IArticle) => {
   const contentCod = encodeURIComponent(content);
   return (
     <Link
-      // to={`/details/${titleCod}}`}
-      to={`/details/${idCod}/${titleCod}/${authorCod}/${descriptionCod}/${urlCod}/${urlToImageCod}/${contentCod}`}
+      to={`/details/${titleCod}}`}
+      // to={`/details/${idCod}/${titleCod}/${authorCod}/${descriptionCod}/${urlCod}/${urlToImageCod}/${contentCod}`}
       className="cardItem"
     >
       <div className="card news">

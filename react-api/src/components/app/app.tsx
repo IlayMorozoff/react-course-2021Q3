@@ -14,16 +14,12 @@ export const App: FC = () => {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/about" exact component={About} />
+        <Route path="/details/:title" exact component={DetailsNews} />
         {/* <Route
-          path="/details/:title"
-          exact
-          component={DetailsNews}
-        /> */}
-        <Route
           path="/details/:id/:title/:author/:description/:url/:urlToImage/:content"
           exact
           component={DetailsNews}
-        />
+        /> */}
         <Route component={Error404} />
       </Switch>
     </>
