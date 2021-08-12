@@ -1,0 +1,24 @@
+.label {
+  font-size: 20px;
+}
+
+.input_nickname {
+  display: block;
+  margin-top: 5px;
+  height: 20px;
+  font-size: 20px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.nickname {
+  display: flex;
+  flex: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name_surname {
+  margin-bottom: 10px;
+}

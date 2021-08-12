@@ -1,0 +1,50 @@
+.radio__group {
+  display: flex;
+  align-items: center;
+
+	justify-content: space-evenly;
+}
+
+.radio__wrapper {
+	margin-bottom: 10px;
+}
+.radio__wrapper input[type=radio] {
+	display: none;
+}
+.radio__wrapper label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	padding-left: 25px;
+	line-height: 18px;
+	user-select: none;
+}
+.radio__wrapper label:before {
+	content: "";
+	display: inline-block;
+	width: 17px;
+	height: 18px;
+	position: absolute;
+	left: 0;
+	bottom: 1px;
+	background: url("https://snipp.ru/img/radio-1.png") 0 0 no-repeat;
+}
+
+/* Checked */
+.radio__wrapper input[type=radio]:checked + label:before {
+	background: url("https://snipp.ru/img/radio-2.png") 0 0 no-repeat;
+}
+
+/* Hover */
+.radio__wrapper label:hover:before {
+	filter: brightness(120%);
+}
+
+/* Disabled */
+.radio__wrapper input[type=radio]:disabled + label:before {
+	filter: grayscale(100%);
+}
+
+.radio__wrapper {
+  margin-left: 20px;
+}
