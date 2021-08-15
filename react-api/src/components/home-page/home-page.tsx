@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import CardsNewsContainer, { newsApi } from '../card-news-container/card-news-container';
 import CardNews from '../card-news/card-news';
 import CounterPages from '../counter-page/counter-page';
@@ -19,12 +19,6 @@ const HomePage: FC = () => {
   const [pagePagination, setPagePagination] = useState(1);
   const [sortValue, setSortValue] = useState('publishedAt');
   const [loading, setLoading] = useState(true);
-
-  const homeRef = useRef(null);
-
-  useEffect(() => {
-    homeRef.current.classList.add('opacity');
-  }, []);
 
   useEffect(() => {
     newsApi.getNews().then((data) => {
@@ -105,7 +99,7 @@ const HomePage: FC = () => {
   const loader = loading ? <Loader /> : <CardsNewsContainer news={news} />;
 
   return (
-    <div className="common" ref={homeRef}>
+    <>
       <div className="search_sort">
         <SearchPanel
           onChangeSearchValue={onChangeSearch}
@@ -130,7 +124,7 @@ const HomePage: FC = () => {
         {error}
       </div>
       <>{loader}</>
-    </div>
+    </>
   );
 };
 
