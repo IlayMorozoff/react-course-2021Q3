@@ -28,20 +28,18 @@ export const App: FC = () => {
   return (
     <>
       <Header />
-      <div className="main">
-        {transitions((props, item) => (
-          <animated.div style={props}>
-            <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
-              <Switch location={item}>
-                <Route path="/" exact component={HomePage} />
-                <Route path="/about" exact component={About} />
-                <Route path="/details/:title" exact component={DetailsNews} />
-                <Route component={Error404} />
-              </Switch>
-            </div>
-          </animated.div>
-        ))}
-      </div>
+      {transitions((props, item) => (
+        <animated.div style={props}>
+          <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
+            <Switch location={item}>
+              <Route path="/" exact component={HomePage} />
+              <Route path="/about" exact component={About} />
+              <Route path="/details/:title" exact component={DetailsNews} />
+              <Route component={Error404} />
+            </Switch>
+          </div>
+        </animated.div>
+      ))}
     </>
   );
 };

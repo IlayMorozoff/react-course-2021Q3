@@ -1,14 +1,19 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { ChangeEvent, FC } from 'react';
-import { IInpuntsRadio, ISortWrapperProps } from '../interfaces';
+import { useDispatch } from 'react-redux';
+import { sortValueAction } from '../../store/action-creators/home-page';
+import { IInpuntsRadio } from '../interfaces';
 import './sort-wrapper.css';
 
-const SortWrapper: FC<ISortWrapperProps> = ({ onSort }) => {
+const SortWrapper: FC = () => {
+  const dipatch = useDispatch();
   const onChangeSortBy = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value) {
-      onSort(e.target.value);
+      // onSort(e.target.value);
+      dipatch(sortValueAction(e.target.value));
     } else {
-      onSort('publishedAt');
+      // onSort('publishedAt');
+      dipatch(sortValueAction('publishedAt'));
     }
   };
 

@@ -10,7 +10,7 @@ export interface IArticle {
 }
 
 export interface IPanelSearchProps {
-  onChangeSearchValue: (value: string) => void;
+  // onChangeSearchValue: (value: string) => void;
   onSend: () => void;
   disableButton: boolean;
 }
@@ -20,9 +20,9 @@ export interface INewsContainerProps {
 }
 
 export interface ICounterPagesProps {
-  onChangeNewsPerPageApp: (newsPerPage: string) => void;
-  onChangeCurrentPageApp: (currentPage: string) => void;
-  allPagesValue: number;
+  // onChangeNewsPerPageApp: (newsPerPage: string) => void;
+  // onChangeCurrentPageApp: (currentPage: string) => void;
+  // allPagesValue: number;
 }
 
 export interface IPaginationProps {
@@ -39,7 +39,7 @@ export interface INumberPagesProps {
 }
 
 export interface ISortWrapperProps {
-  onSort: (sortBy: string) => void;
+  // onSort: (sortBy: string) => void;
 }
 
 export interface IInpuntsRadio {
@@ -65,3 +65,94 @@ interface ISourceServ {
 export interface IDetailsNewsProps {
   news: IArticle[];
 }
+
+export enum PageActionsTypes {
+  SEARCH_VALUE = 'SEARCH_VALUE',
+  NEWS_PER_PAGE = 'NEWS_PER_PAGE',
+  CURRENT_PAGE = 'CURRENT_PAGE',
+  ALL_VALUE_PAGES = 'ALL_VALUE_PAGES',
+  SORT_VALUE = 'SORT_VALUE',
+}
+
+export enum PaginationActionTypes {
+  PAGE_PAGINATION_NEXT = 'PAGE_PAGINATION_NEXT',
+  PAGE_PAGINATION_PREV = 'PAGE_PAGINATION_PREV',
+}
+
+export enum NewsActionsTypes {
+  FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS',
+  FETCH_ARTICLES_ERROR = 'FETCH_ARTICLES_ERROR',
+}
+
+// interfaces for state
+export interface IHomePageState {
+  searchValue: string;
+  newsPerPage: string;
+  currentPage: string;
+  allPagesValue: number;
+  sortValue: string;
+}
+
+export interface IPaginationState {
+  pagePagination: number;
+}
+
+export interface INewsState {
+  articles: IArticle[];
+  loading: boolean;
+  error: null | string;
+}
+// interfaces for actions
+export interface ISearchAction {
+  type: PageActionsTypes.SEARCH_VALUE;
+  payload: string;
+}
+
+export interface INewsPerPageAction {
+  type: PageActionsTypes.NEWS_PER_PAGE;
+  payload: string;
+}
+
+export interface ICurrentPageAction {
+  type: PageActionsTypes.CURRENT_PAGE;
+  payload: string;
+}
+
+export interface IAllPagesValueAction {
+  type: PageActionsTypes.ALL_VALUE_PAGES;
+  payload: number;
+}
+
+export interface IPagePaginationNextAction {
+  type: PaginationActionTypes.PAGE_PAGINATION_NEXT;
+}
+
+export interface IPagePaginationPrevAction {
+  type: PaginationActionTypes.PAGE_PAGINATION_PREV;
+}
+
+export interface ISortValueAction {
+  type: PageActionsTypes.SORT_VALUE;
+  payload: string;
+}
+
+export interface IFetchNewsSuccessAction {
+  type: NewsActionsTypes.FETCH_ARTICLES_SUCCESS;
+  payload: IArticle[];
+}
+
+export interface IFetchNewsErrorAction {
+  type: NewsActionsTypes.FETCH_ARTICLES_ERROR;
+  payload: string;
+}
+// type for actions
+export type PageAction =
+  | ISearchAction
+  | INewsPerPageAction
+  | ICurrentPageAction
+  | IAllPagesValueAction
+  | ISortValueAction;
+
+export type PaginationAction = IPagePaginationNextAction | IPagePaginationPrevAction;
+
+export type NewsAction = IFetchNewsSuccessAction | IFetchNewsErrorAction;

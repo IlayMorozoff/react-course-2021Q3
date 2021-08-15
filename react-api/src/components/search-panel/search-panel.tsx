@@ -1,13 +1,23 @@
-import { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
+import { ChangeEvent, FC, KeyboardEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchValueAction } from '../../store/action-creators/home-page';
+import { RootState } from '../../store/reducers';
 import { IPanelSearchProps } from '../interfaces';
 import './search-panel.css';
 
-const SearchPanel: FC<IPanelSearchProps> = ({ onChangeSearchValue, onSend, disableButton }) => {
-  const [searchValue, setSearchValue] = useState('');
-  // ChangeEvent<HTMLInputElement>
+const SearchPanel: FC<IPanelSearchProps> = ({ onSend, disableButton }) => {
+  const searchValue = useSelector<RootState, string>((state) => state.homePage.searchValue);
+  const dispatch = useDispatch();
+
+  // const [searchValue, setSearchValue] = useState('');
+  // const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+  //   setSearchValue(e.target.value);
+  //   onChangeSearchValue(e.target.value);
+  // };
+  // const [searchValue, setSearchValue] = useState('');
   const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-    onChangeSearchValue(e.target.value);
+    dispatch(searchValueAction(e.target.value));
+    // onChangeSearchValue(e.target.value);
   };
 
   const onChangeSearchEnter = (e: KeyboardEvent<HTMLInputElement>) => {
