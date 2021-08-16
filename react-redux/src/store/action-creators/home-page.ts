@@ -70,52 +70,14 @@ export const fetchArticles = (
         } else {
           dispatch(fetchNewsSuccessAction(articles));
           if (articles[0].totalResults) {
-            // setAllPagesValue(data[0].totalResults);
             dispatch(allPagesValueAction(articles[0].totalResults));
           } else {
             dispatch(allPagesValueAction(0));
-            // setAllPagesValue(0);
           }
         }
-        // dispatch(fetchNewsSuccessAction(articles));
-        // if (articles[0].totalResults) {
-        //   // setAllPagesValue(data[0].totalResults);
-        //   dispatch(allPagesValueAction(articles[0].totalResults));
-        // } else {
-        //   dispatch(allPagesValueAction(0));
-        //   // setAllPagesValue(0);
-        // }
       });
     } catch (err) {
       dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
     }
   };
 };
-
-// searchField || 'science',
-// String(pagePagination || '1'),
-// newsPerPage || '10',
-// sortValue || 'publishedAt',
-
-// export const fetchArticlesPagination = () => {
-//   return (dispatch: Dispatch<NewsAction | PageAction>) => {
-//     dispatch(fetchNewsAction());
-//     try {
-//       newsApi.getNews().then((articles) => {
-//         if (!articles) {
-//           console.log('error');
-//         }
-//         dispatch(fetchNewsSuccessAction(articles));
-//         if (articles[0].totalResults) {
-//           // setAllPagesValue(data[0].totalResults);
-//           dispatch(allPagesValueAction(articles[0].totalResults));
-//         } else {
-//           dispatch(allPagesValueAction(0));
-//           // setAllPagesValue(0);
-//         }
-//       });
-//     } catch (err) {
-//       dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
-//     }
-//   };
-// };

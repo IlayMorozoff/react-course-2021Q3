@@ -1,6 +1,7 @@
+import { FC } from 'react';
 import './errorFetch.css';
 
-const ErrorFetch = () => {
+const ErrorFetch: FC = () => {
   return (
     <div className="wrapper_error">
       <div className="error__fetch__title">The list of articles is empty</div>

@@ -10,36 +10,7 @@ export interface IArticle {
 }
 
 export interface IPanelSearchProps {
-  // onChangeSearchValue: (value: string) => void;
-  // onSend: () => void;
   disableButton: boolean;
-}
-
-export interface INewsContainerProps {
-  // news: JSX.Element[];
-}
-
-export interface ICounterPagesProps {
-  // onChangeNewsPerPageApp: (newsPerPage: string) => void;
-  // onChangeCurrentPageApp: (currentPage: string) => void;
-  // allPagesValue: number;
-}
-
-export interface IPaginationProps {
-  allPagesValue: number;
-  onPaginationNext: () => void;
-  onPaginationPrev: () => void;
-  pagePagination: number;
-  newsPerPage: string;
-}
-
-export interface INumberPagesProps {
-  allPagesValue: number;
-  pagePagination: number;
-}
-
-export interface ISortWrapperProps {
-  // onSort: (sortBy: string) => void;
 }
 
 export interface IInpuntsRadio {
@@ -62,10 +33,6 @@ interface ISourceServ {
   name: string | null;
 }
 
-export interface IDetailsNewsProps {
-  news: IArticle[];
-}
-
 export enum PageActionsTypes {
   SEARCH_VALUE = 'SEARCH_VALUE',
   NEWS_PER_PAGE = 'NEWS_PER_PAGE',
@@ -85,7 +52,6 @@ export enum NewsActionsTypes {
   FETCH_ARTICLES_ERROR = 'FETCH_ARTICLES_ERROR',
 }
 
-// interfaces for state
 export interface IHomePageState {
   searchValue: string;
   newsPerPage: string;
@@ -103,7 +69,7 @@ export interface INewsState {
   loading: boolean;
   error: null | string;
 }
-// interfaces for actions
+
 export interface ISearchAction {
   type: PageActionsTypes.SEARCH_VALUE;
   payload: string;
@@ -151,7 +117,6 @@ export interface IFetchNewsAction {
   type: NewsActionsTypes.FETCH_ARTICLES;
 }
 
-// type for actions
 export type PageAction =
   | ISearchAction
   | INewsPerPageAction

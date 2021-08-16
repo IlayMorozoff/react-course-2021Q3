@@ -5,13 +5,12 @@ import {
   pagePaginatioPrevAction,
 } from '../../store/action-creators/pagination';
 import { RootState } from '../../store/reducers';
-// import { IPaginationProps } from '../interfaces';
+import { IHomePageState } from '../interfaces';
 import NumberPages from '../number-pages/number-pages';
 import './pagination.css';
 
 const Pagination: FC = () => {
-  const newsPerPage = useSelector<RootState, string>((state) => state.homePage.newsPerPage);
-  const allPagesValue = useSelector<RootState, number>((state) => state.homePage.allPagesValue);
+  const { newsPerPage } = useSelector<RootState, IHomePageState>((state) => state.homePage);
   const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   const dispatch = useDispatch();
   const disabledBtnNext = Number(newsPerPage) * pagePagination >= 100;
@@ -26,7 +25,7 @@ const Pagination: FC = () => {
       >
         Prev
       </button>
-      <NumberPages allPagesValue={allPagesValue} pagePagination={pagePagination} />
+      <NumberPages />
       <button
         className="button pagination_btn"
         type="button"

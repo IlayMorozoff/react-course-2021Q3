@@ -9,10 +9,8 @@ const SortWrapper: FC = () => {
   const dipatch = useDispatch();
   const onChangeSortBy = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value) {
-      // onSort(e.target.value);
       dipatch(sortValueAction(e.target.value));
     } else {
-      // onSort('publishedAt');
       dipatch(sortValueAction('publishedAt'));
     }
   };

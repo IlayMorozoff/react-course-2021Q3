@@ -12,7 +12,7 @@ const DetailsNews: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    newsApi.getNews(title, '1', '100').then((articleServ) => {
+    newsApi.getNews(title, '1', '100', 'publishedAt').then((articleServ) => {
       setArticle(articleServ);
       setIsLoading(false);
     });
@@ -49,9 +49,7 @@ const DetailsNews: FC = () => {
       </section>
     );
   };
-
   const loader = isLoading ? <Loader /> : <DetailsContainer />;
-
   return <div>{loader}</div>;
 };
 

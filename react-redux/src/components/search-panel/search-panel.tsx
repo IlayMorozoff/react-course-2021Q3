@@ -12,41 +12,18 @@ const SearchPanel: FC<IPanelSearchProps> = ({ disableButton }) => {
   const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   const dispatch = useDispatch();
 
-  // const [searchValue, setSearchValue] = useState('');
-  // const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
-  //   setSearchValue(e.target.value);
-  //   onChangeSearchValue(e.target.value);
-  // };
-  // const [searchValue, setSearchValue] = useState('');
   const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(searchValueAction(e.target.value));
-    // onChangeSearchValue(e.target.value);
   };
 
   const onChangeSearchEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === 'Enter' || e.code === 'NumpadEnter') {
-      // onSend();
-      dispatch(
-        fetchArticles(
-          searchValue || 'science',
-          String(pagePagination) || '1',
-          newsPerPage || '10',
-          sortValue,
-        ),
-      );
+      dispatch(fetchArticles(searchValue, String(pagePagination), newsPerPage, sortValue));
     }
   };
 
   const onClickSearchButton = () => {
-    // onSend();
-    dispatch(
-      fetchArticles(
-        searchValue || 'science',
-        String(pagePagination) || '1',
-        newsPerPage || '10',
-        sortValue,
-      ),
-    );
+    dispatch(fetchArticles(searchValue, String(pagePagination), newsPerPage, sortValue));
   };
 
   return (

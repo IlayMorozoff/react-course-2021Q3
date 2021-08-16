@@ -3,23 +3,18 @@ import { ChangeEvent, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentPageAction, newsPerPageAction } from '../../store/action-creators/home-page';
 import { RootState } from '../../store/reducers';
-import { ICounterPagesProps } from '../interfaces';
 import './counter-page.css';
 
-const CounterPages: FC<ICounterPagesProps> = () => {
+const CounterPages: FC = () => {
   const newsPerPage = useSelector<RootState, string>((state) => state.homePage.newsPerPage);
   const currentPage = useSelector<RootState, string>((state) => state.homePage.currentPage);
   const allPagesValue = useSelector<RootState, number>((state) => state.homePage.allPagesValue);
   const dispatch = useDispatch();
-  // const [newsPerPage, setNewsPerPage] = useState('');
-  // const [currentPage, setCurrentPage] = useState('');
 
   const onChangeNewsPerPage = (e: ChangeEvent<HTMLInputElement>) => {
     if (Number(e.target.value) <= 100 && e.target.value && e.target.value !== '0') {
-      // setNewsPerPage(e.target.value);
       dispatch(newsPerPageAction(e.target.value));
     } else {
-      // setNewsPerPage('');
       dispatch(newsPerPageAction(''));
     }
   };
@@ -30,13 +25,9 @@ const CounterPages: FC<ICounterPagesProps> = () => {
       e.target.value !== '0' &&
       Number(e.target.value) <= allPagesValue
     ) {
-      // setCurrentPage(e.target.value);
-      // onChangeCurrentPageApp(e.target.value);
       dispatch(currentPageAction(e.target.value));
     } else {
       dispatch(currentPageAction(''));
-      // setCurrentPage('');
-      // onChangeCurrentPageApp('1');
     }
   };
 

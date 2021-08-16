@@ -1,7 +1,10 @@
 import { FC } from 'react';
-import { INumberPagesProps } from '../interfaces';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/reducers';
 
-const NumberPages: FC<INumberPagesProps> = ({ allPagesValue, pagePagination }) => {
+const NumberPages: FC = () => {
+  const allPagesValue = useSelector<RootState, number>((state) => state.homePage.allPagesValue);
+  const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   return (
     <div className="number_pages">
       <div className="current">Current page: {pagePagination}</div>
