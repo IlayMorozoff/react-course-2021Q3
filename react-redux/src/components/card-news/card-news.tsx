@@ -2,10 +2,14 @@ import { Link } from 'react-router-dom';
 import { IArticle } from '../interfaces';
 import './card-news.css';
 import defaultImage from '../../assets/default-image.jpg';
+import ErrorFetch from '../error/errorFetch';
 
 const CardNews = (props: IArticle) => {
   const { author, content, description, title, urlToImage } = props;
   const titleCod = encodeURIComponent(title);
+  if (title === 'No news was found for this request or the API requests limit is being searched') {
+    return <ErrorFetch />;
+  }
   return (
     <Link to={`/details/${titleCod}}`} className="cardItem">
       <div className="card news">

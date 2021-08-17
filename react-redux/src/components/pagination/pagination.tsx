@@ -10,18 +10,29 @@ import NumberPages from '../number-pages/number-pages';
 import './pagination.css';
 
 const Pagination: FC = () => {
-  const { newsPerPage } = useSelector<RootState, IHomePageState>((state) => state.homePage);
-  const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
+  const { newsPerPage, currentPage } = useSelector<RootState, IHomePageState>(
+    (state) => state.homePage,
+  );
+  // const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   const dispatch = useDispatch();
-  const disabledBtnNext = Number(newsPerPage) * pagePagination >= 100;
-  const disabledBtnPrev = pagePagination <= 1;
+  const disabledBtnNext = Number(newsPerPage) * Number(currentPage) >= 100;
+  const disabledBtnPrev = Number(currentPage) <= 1;
+
+  const onPrevClick = () => {
+    dispatch(pagePaginatioPrevAction());
+  };
+
+  const onNextClick = () => {
+    dispatch(pagePaginatioNextAction());
+  };
+
   return (
     <div className="pagination">
       <button
         className="button pagination_btn"
         type="button"
         disabled={disabledBtnPrev}
-        onClick={() => dispatch(pagePaginatioPrevAction())}
+        onClick={onPrevClick}
       >
         Prev
       </button>
@@ -30,7 +41,7 @@ const Pagination: FC = () => {
         className="button pagination_btn"
         type="button"
         disabled={disabledBtnNext}
-        onClick={() => dispatch(pagePaginatioNextAction())}
+        onClick={onNextClick}
       >
         Next
       </button>

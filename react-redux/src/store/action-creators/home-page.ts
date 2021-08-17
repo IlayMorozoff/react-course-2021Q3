@@ -56,15 +56,15 @@ export const fetchNewsErrorAction = (payload: string): IFetchNewsErrorAction => 
 });
 
 export const fetchArticles = (
-  _searchField?: string,
-  _pagePagination?: string,
-  _newsPerPage?: string,
-  _sortValue?: string,
+  searchField: string = 'science',
+  pagePagination: string = '1',
+  newsPerPage: string = '10',
+  sortValue: string = 'publishedAt',
 ) => {
   return (dispatch: Dispatch<NewsAction | PageAction>) => {
     dispatch(fetchNewsAction());
     try {
-      newsApi.getNews(_searchField, _sortValue, _newsPerPage, _pagePagination).then((articles) => {
+      newsApi.getNews(searchField, pagePagination, newsPerPage, sortValue).then((articles) => {
         if (!articles) {
           dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
         } else {

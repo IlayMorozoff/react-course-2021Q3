@@ -8,6 +8,7 @@ import './counter-page.css';
 const CounterPages: FC = () => {
   const newsPerPage = useSelector<RootState, string>((state) => state.homePage.newsPerPage);
   const currentPage = useSelector<RootState, string>((state) => state.homePage.currentPage);
+  // const currentPage = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   const allPagesValue = useSelector<RootState, number>((state) => state.homePage.allPagesValue);
   const dispatch = useDispatch();
 

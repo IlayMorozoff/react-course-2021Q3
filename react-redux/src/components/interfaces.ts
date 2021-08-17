@@ -39,6 +39,8 @@ export enum PageActionsTypes {
   CURRENT_PAGE = 'CURRENT_PAGE',
   ALL_VALUE_PAGES = 'ALL_VALUE_PAGES',
   SORT_VALUE = 'SORT_VALUE',
+  PAGE_PAGINATION_NEXT = 'PAGE_PAGINATION_NEXT',
+  PAGE_PAGINATION_PREV = 'PAGE_PAGINATION_PREV',
 }
 
 export enum PaginationActionTypes {
@@ -91,11 +93,11 @@ export interface IAllPagesValueAction {
 }
 
 export interface IPagePaginationNextAction {
-  type: PaginationActionTypes.PAGE_PAGINATION_NEXT;
+  type: PageActionsTypes.PAGE_PAGINATION_NEXT;
 }
 
 export interface IPagePaginationPrevAction {
-  type: PaginationActionTypes.PAGE_PAGINATION_PREV;
+  type: PageActionsTypes.PAGE_PAGINATION_PREV;
 }
 
 export interface ISortValueAction {
@@ -122,7 +124,9 @@ export type PageAction =
   | INewsPerPageAction
   | ICurrentPageAction
   | IAllPagesValueAction
-  | ISortValueAction;
+  | ISortValueAction
+  | IPagePaginationNextAction
+  | IPagePaginationPrevAction;
 
 export type PaginationAction = IPagePaginationNextAction | IPagePaginationPrevAction;
 

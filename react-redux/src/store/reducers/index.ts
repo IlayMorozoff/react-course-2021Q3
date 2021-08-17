@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import homePageReducer from './home-page-reducer';
 import newsReducer from './news-reducer';
-import { paginationReducer } from './pagination-reducer';
+// import { paginationReducer } from './pagination-reducer';
 
 const rootReducer = combineReducers({
   homePage: homePageReducer,
-  pagination: paginationReducer,
+  // pagination: paginationReducer,
   fetchArticles: newsReducer,
 });
 

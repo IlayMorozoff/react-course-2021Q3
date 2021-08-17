@@ -6,10 +6,11 @@ import { IHomePageState, IPanelSearchProps } from '../interfaces';
 import './search-panel.css';
 
 const SearchPanel: FC<IPanelSearchProps> = ({ disableButton }) => {
-  const { searchValue, newsPerPage, sortValue } = useSelector<RootState, IHomePageState>(
-    (state) => state.homePage,
-  );
-  const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
+  const { searchValue, newsPerPage, sortValue, currentPage } = useSelector<
+    RootState,
+    IHomePageState
+  >((state) => state.homePage);
+  // const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   const dispatch = useDispatch();
 
   const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -18,12 +19,12 @@ const SearchPanel: FC<IPanelSearchProps> = ({ disableButton }) => {
 
   const onChangeSearchEnter = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.code === 'Enter' || e.code === 'NumpadEnter') {
-      dispatch(fetchArticles(searchValue, String(pagePagination), newsPerPage, sortValue));
+      dispatch(fetchArticles(searchValue, currentPage, newsPerPage, sortValue));
     }
   };
 
   const onClickSearchButton = () => {
-    dispatch(fetchArticles(searchValue, String(pagePagination), newsPerPage, sortValue));
+    dispatch(fetchArticles(searchValue, currentPage, newsPerPage, sortValue));
   };
 
   return (

@@ -1,13 +1,13 @@
 import {
   IPagePaginationNextAction,
   IPagePaginationPrevAction,
-  PaginationActionTypes,
+  PageActionsTypes,
 } from '../../components/interfaces';
 
 export const pagePaginatioNextAction = (): IPagePaginationNextAction => ({
-  type: PaginationActionTypes.PAGE_PAGINATION_NEXT,
+  type: PageActionsTypes.PAGE_PAGINATION_NEXT,
 });
 
 export const pagePaginatioPrevAction = (): IPagePaginationPrevAction => ({
-  type: PaginationActionTypes.PAGE_PAGINATION_PREV,
+  type: PageActionsTypes.PAGE_PAGINATION_PREV,
 });

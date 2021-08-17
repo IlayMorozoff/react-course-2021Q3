@@ -18,17 +18,17 @@ const HomePage: FC = () => {
     RootState,
     IHomePageState
   >((state) => state.homePage);
-  const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
+  // const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   const { loading, error } = useSelector<RootState, INewsState>((state) => state.fetchArticles);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchArticles());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchArticles(searchValue, String(pagePagination), newsPerPage, sortValue));
-  }, [pagePagination]);
+    dispatch(fetchArticles(searchValue, currentPage, newsPerPage, sortValue));
+  }, [newsPerPage, sortValue, currentPage]);
 
   const check = Number(newsPerPage) * Number(currentPage);
 

@@ -5,7 +5,7 @@ export const initialState: IHomePageState = {
   newsPerPage: '',
   currentPage: '',
   allPagesValue: 0,
-  sortValue: 'publishedAt',
+  sortValue: '',
 };
 
 const homePageReducer = (state = initialState, action: PageAction): IHomePageState => {
@@ -20,6 +20,10 @@ const homePageReducer = (state = initialState, action: PageAction): IHomePageSta
       return { ...state, allPagesValue: action.payload };
     case PageActionsTypes.SORT_VALUE:
       return { ...state, sortValue: action.payload };
+    case PageActionsTypes.PAGE_PAGINATION_NEXT:
+      return { ...state, currentPage: String(Number(state.currentPage) + 1) };
+    case PageActionsTypes.PAGE_PAGINATION_PREV:
+      return { ...state, currentPage: String(Number(state.currentPage) - 1) };
     default:
       return state;
   }
