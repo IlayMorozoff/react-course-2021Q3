@@ -16,6 +16,7 @@ export interface IPanelSearchProps {
 export interface IInpuntsRadio {
   name: string;
   sortBy: string;
+  dataTestid: string;
 }
 
 export interface IArticleServer {

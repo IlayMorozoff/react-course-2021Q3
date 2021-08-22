@@ -2,9 +2,9 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './details-news.css';
 import defaultImg from '../../assets/default-image.jpg';
-import { newsApi } from '../card-news-container/card-news-container';
 import { IArticle } from '../interfaces';
 import Loader from '../loader/loader';
+import newsApi from '../../services/news-service/news-service';
 
 const DetailsNews: FC = () => {
   const { title }: { title: string } = useParams();

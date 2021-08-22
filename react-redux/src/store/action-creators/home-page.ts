@@ -1,5 +1,4 @@
 import { Dispatch } from 'redux';
-import { newsApi } from '../../components/card-news-container/card-news-container';
 import {
   IAllPagesValueAction,
   IArticle,
@@ -15,6 +14,7 @@ import {
   PageAction,
   PageActionsTypes,
 } from '../../components/interfaces';
+import newsApi from '../../services/news-service/news-service';
 
 export const searchValueAction = (payload: string): ISearchAction => ({
   type: PageActionsTypes.SEARCH_VALUE,
@@ -65,16 +65,25 @@ export const fetchArticles = (
     dispatch(fetchNewsAction());
     try {
       newsApi.getNews(searchField, pagePagination, newsPerPage, sortValue).then((articles) => {
-        if (!articles) {
-          dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
-        } else {
+        // if (!articles) {
+        //   dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
+        // }
+        // if {
+
+        // if (articles[0].totalResults) {
+        if (articles) {
           dispatch(fetchNewsSuccessAction(articles));
-          if (articles[0].totalResults) {
-            dispatch(allPagesValueAction(articles[0].totalResults));
-          } else {
-            dispatch(allPagesValueAction(0));
-          }
+          const { totalResults } = articles[0];
+          dispatch(allPagesValueAction(totalResults));
+        } else {
+          dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
         }
+        // dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
+        // }
+        // else {
+        //   dispatch(allPagesValueAction(0));
+        // }
+        // }
       });
     } catch (err) {
       dispatch(fetchNewsErrorAction('An error occurred when loading articles'));

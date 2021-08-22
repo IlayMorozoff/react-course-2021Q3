@@ -6,19 +6,25 @@ const Header: FC = () => {
   return (
     <header className="header">
       <div className="nav__wrapper">
-        <nav className="nav">
-          <ul className="links__list">
-            <li className="item">
-              <NavLink to="/" exact className="link" activeClassName="selected">
+        <nav className="nav" data-testid="nav">
+          <div className="links__list">
+            <div className="item">
+              <NavLink to="/" exact className="link" activeClassName="selected" data-testid="home">
                 Home
               </NavLink>
-            </li>
-            <li className="item">
-              <NavLink to="/about" exact className="link" activeClassName="selected">
+            </div>
+            <div className="item">
+              <NavLink
+                to="/about"
+                exact
+                className="link"
+                activeClassName="selected"
+                data-testid="about"
+              >
                 About
               </NavLink>
-            </li>
-          </ul>
+            </div>
+          </div>
         </nav>
       </div>
     </header>

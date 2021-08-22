@@ -11,25 +11,27 @@ const CardNews = (props: IArticle) => {
     return <ErrorFetch />;
   }
   return (
-    <Link to={`/details/${titleCod}}`} className="cardItem">
-      <div className="card news">
-        <div className="title_card">{title}</div>
-        <h4 className="autor">By: {author !== 'null' ? author : 'Unknown'}</h4>
-        <div className="content_card">
-          <div className="image_wrapper">
-            <img
-              className="image"
-              src={urlToImage !== 'null' ? urlToImage : defaultImage}
-              alt="something news"
-            />
-          </div>
-          <div className="content_wrap">
-            <div className="discription">{description}</div>
-            <div className="content">{content}</div>
+    <li data-testid="list-item">
+      <Link to={`/details/${titleCod}}`} className="cardItem">
+        <div className="card news">
+          <div className="title_card">{title}</div>
+          <h4 className="autor">By: {author !== 'null' ? author : 'Unknown'}</h4>
+          <div className="content_card">
+            <div className="image_wrapper">
+              <img
+                className="image"
+                src={urlToImage !== 'null' ? urlToImage : defaultImage}
+                alt="something news"
+              />
+            </div>
+            <div className="content_wrap">
+              <div className="discription">{description}</div>
+              <div className="content">{content}</div>
+            </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </li>
   );
 };
 

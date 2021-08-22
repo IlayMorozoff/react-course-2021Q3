@@ -8,25 +8,27 @@ import './sort-wrapper.css';
 const SortWrapper: FC = () => {
   const dipatch = useDispatch();
   const onChangeSortBy = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value) {
-      dipatch(sortValueAction(e.target.value));
-    } else {
-      dipatch(sortValueAction('publishedAt'));
-    }
+    // if (e.target.value) {
+    dipatch(sortValueAction(e.target.value));
+    // }
+    // dipatch(sortValueAction('publishedAt'));
   };
 
   const inputsRadioSort: IInpuntsRadio[] = [
     {
       name: 'newest',
       sortBy: 'publishedAt',
+      dataTestid: 'newest',
     },
     {
       name: 'more suitable',
       sortBy: 'relevancy',
+      dataTestid: 'more',
     },
     {
       name: 'popular',
       sortBy: 'popularity',
+      dataTestid: 'popular',
     },
   ];
 
@@ -40,6 +42,7 @@ const SortWrapper: FC = () => {
           value={radioButton.sortBy}
           name="sort"
           onChange={onChangeSortBy}
+          data-testid={radioButton.dataTestid}
         />
         <label htmlFor={radioButton.name} className="newest_sort">
           {radioButton.name}

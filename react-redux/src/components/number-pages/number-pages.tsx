@@ -6,7 +6,6 @@ import { IHomePageState } from '../interfaces';
 const NumberPages: FC = () => {
   const allPagesValue = useSelector<RootState, number>((state) => state.homePage.allPagesValue);
   const { currentPage } = useSelector<RootState, IHomePageState>((state) => state.homePage);
-  // const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   return (
     <div className="number_pages">
       <div className="current">Current page: {currentPage}</div>

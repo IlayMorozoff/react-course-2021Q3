@@ -12,7 +12,7 @@ const Error404: FC = () => {
       </div>
       <div className="text__error">Page Not Found</div>
       <div className="back">
-        <Link to="/" className="back_link button">
+        <Link to="/" className="back_link button" data-testid="goHome">
           Go back to the Home page
         </Link>
       </div>

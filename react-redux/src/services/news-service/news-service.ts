@@ -6,7 +6,7 @@ import ErrorImg from '../../assets/error.jpg';
 // 'X-Api-Key': '9d864b6a2d944129b18b6a405c831cb0',
 // 'X-Api-Key': '26cba7b7a5a44c63a66ac72da1244686',
 // a0b7d0d16c4d4fed9f6b525217923926
-export default class NewsService {
+class NewsService {
   private apiBase = `https://newsapi.org/v2/everything?q=`;
 
   async getNews(
@@ -17,12 +17,12 @@ export default class NewsService {
   ): Promise<IArticle[]> {
     try {
       const response = await fetch(
-        `${this.apiBase}"${keyWords}"&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}&apiKey=9d864b6a2d944129b18b6a405c831cb0`,
+        `${this.apiBase}"${keyWords}"&sortBy=${sortBy}&pageSize=${pageSize}&page=${page}&apiKey=a0b7d0d16c4d4fed9f6b525217923926`,
       );
       const { status } = response;
       const news = await response.json();
       if (status === 200 && news) {
-        const totalResults = await news.totalResults;
+        const { totalResults } = await news;
         const result = await news.articles.map((article: IArticleServer) => {
           return {
             author: article.author,
@@ -51,7 +51,11 @@ export default class NewsService {
         },
       ];
     } catch (error) {
-      throw new Error('NEWS CANNOT TO BE GOT');
+      // throw new Error('NEWS CANNOT TO BE GOT');
     }
   }
 }
+
+const newsApi = new NewsService();
+
+export default newsApi;

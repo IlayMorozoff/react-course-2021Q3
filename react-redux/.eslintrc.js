@@ -12,9 +12,13 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
     ecmaVersion: 2020,
     sourceType: 'module',
     project: './tsconfig.eslint.json',
+    // project: './react-redux/tsconfig.eslint.json',
   },
   rules: {
     'no-unused-vars': 'off',

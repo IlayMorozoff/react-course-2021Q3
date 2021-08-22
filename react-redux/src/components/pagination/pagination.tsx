@@ -13,7 +13,6 @@ const Pagination: FC = () => {
   const { newsPerPage, currentPage } = useSelector<RootState, IHomePageState>(
     (state) => state.homePage,
   );
-  // const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   const dispatch = useDispatch();
   const disabledBtnNext = Number(newsPerPage) * Number(currentPage) >= 100;
   const disabledBtnPrev = Number(currentPage) <= 1;
