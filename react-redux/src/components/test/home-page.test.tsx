@@ -26,36 +26,13 @@ const article: { status: string; totalResults: number; articles: Array<IArticle>
   totalResults: 4552,
   articles: data,
 };
-// const dataFromServe = 1;
-// newsApi.getNews = jest.fn();
 
-// const fakeFetch = jest.fn();
-// window.fetch = fakeFetch;
-// fakeFetch.mockResolvedValueOnce({
-//   // status: 200,
-//   json: () => {
-//     const a = data
-//     console.log(a)
-//     return a;
-//   },
-// });
 (window as any).fetch = jest.fn(() =>
   Promise.resolve({
     json: () => Promise.resolve(article),
     status: 200,
   }),
 );
-// const fakeFetch = jest.fn();
-// window.fetch = fakeFetch;
-// fetch()
-// fakeFetch.mockResolvedValueOnce({
-// status: 200,
-//   json: async () => {
-//     const a = data
-//     console.log(a)
-//     return a;
-//   },
-// });
 
 describe('home page', () => {
   it('should render the home page', () => {
@@ -117,13 +94,6 @@ describe('home page', () => {
     userEvent.click(getByTestId('newest'));
     expect(getByTestId('newest')).toBeChecked();
     userEvent.click(searchButton);
-
-    // waitFor(() => {
-    //   console.log('it are items')
-    //   const items = screen.getAllByTestId('list-item');
-    //   return expect(items).toHaveLength(10);
-    // }).then((data) => resolve(data))
-    // const items = await screen.findAllByTestId('list-item');
     return screen
       .findAllByTestId('list-item')
       .then((dataRender) => expect(dataRender).toHaveLength(1));

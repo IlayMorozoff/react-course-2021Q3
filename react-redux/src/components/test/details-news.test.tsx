@@ -1,7 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
-import userEvent from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import store from '../../store';
@@ -11,10 +10,10 @@ import { IArticle } from '../interfaces';
 const data: IArticle[] = [
   {
     author: 'Ilya Morozov',
-    content: 'dsadsadsadsa',
+    content: 'CONTENT',
     description: 'dsadsadsadsa',
     title: 'dsadsadsadas',
-    url: 'dsadsad',
+    url: 'URL',
     urlToImage: 'www.getByText.ru',
     id: Math.random() + 1,
     totalResults: 1,
@@ -37,13 +36,14 @@ const article: { status: string; totalResults: number; articles: Array<IArticle>
 describe('details news', () => {
   it('details news renders correctly and works correctly', async () => {
     const history = createMemoryHistory();
-    const { container, getByText, getByAltText, getByRole } = render(
+    const { findByTestId } = render(
       <Router history={history}>
         <Provider store={store}>
           <DetailsNews />
         </Provider>
       </Router>,
     );
-    // const item = await getByAltText('');
+    const detailsPage = await findByTestId('details');
+    expect(detailsPage.innerHTML).toMatch('www.getByText.ru');
   });
-})
+});

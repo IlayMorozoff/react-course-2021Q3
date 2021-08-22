@@ -20,7 +20,7 @@ const DetailsNews: FC = () => {
 
   const DetailsContainer = () => {
     return (
-      <section className="details">
+      <section className="details" data-testid="details">
         <h1 className="title_details">{article[0].title}</h1>
         <h2 className="autor_details">By: {article[0].author || 'Unknown'}</h2>
         <div className="content_details">
