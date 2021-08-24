@@ -64,27 +64,17 @@ export const fetchArticles = (
   return (dispatch: Dispatch<NewsAction | PageAction>) => {
     dispatch(fetchNewsAction());
     try {
-      newsApi.getNews(searchField, pagePagination, newsPerPage, sortValue).then((articles) => {
-        // if (!articles) {
-        //   dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
-        // }
-        // if {
-
-        // if (articles[0].totalResults) {
-        if (articles) {
-          dispatch(fetchNewsSuccessAction(articles));
-          const { totalResults } = articles[0];
-          dispatch(allPagesValueAction(totalResults));
-        } else {
-          dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
-        }
-        // dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
-        // }
-        // else {
-        //   dispatch(allPagesValueAction(0));
-        // }
-        // }
-      });
+      newsApi
+        .getNews(searchField || 'science', pagePagination, newsPerPage, sortValue)
+        .then((articles) => {
+          if (articles) {
+            dispatch(fetchNewsSuccessAction(articles));
+            const { totalResults } = articles[0];
+            dispatch(allPagesValueAction(totalResults));
+          } else {
+            dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
+          }
+        });
     } catch (err) {
       dispatch(fetchNewsErrorAction('An error occurred when loading articles'));
     }

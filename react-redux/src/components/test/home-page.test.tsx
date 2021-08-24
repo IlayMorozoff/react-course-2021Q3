@@ -6,26 +6,7 @@ import { Router } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import store from '../../store';
 import { App } from '../app/app';
-import { IArticle } from '../interfaces';
-
-const data: IArticle[] = [
-  {
-    author: 'Ilya Morozov',
-    content: 'dsadsadsadsa',
-    description: 'dsadsadsadsa',
-    title: 'dsadsadsadas',
-    url: 'dsadsad',
-    urlToImage: 'www.getByText.ru',
-    id: Math.random() + 1,
-    totalResults: 1,
-  },
-];
-
-const article: { status: string; totalResults: number; articles: Array<IArticle> } = {
-  status: 'ok',
-  totalResults: 4552,
-  articles: data,
-};
+import { article } from './fakeData';
 
 (window as any).fetch = jest.fn(() =>
   Promise.resolve({
@@ -96,7 +77,10 @@ describe('home page', () => {
     userEvent.click(searchButton);
     return screen
       .findAllByTestId('list-item')
-      .then((dataRender) => expect(dataRender).toHaveLength(1));
+      .then((dataRender) => {
+        expect(dataRender).toHaveLength(1);
+      })
+      .catch((err) => expect(err).toHaveTextContent('NEWS CANNOT TO BE GOT'));
   });
 
   it('should navigate to the about page', () => {

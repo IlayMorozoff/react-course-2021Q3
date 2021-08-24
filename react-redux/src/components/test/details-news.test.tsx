@@ -5,26 +5,7 @@ import { Router } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import store from '../../store';
 import DetailsNews from '../details-news/details-news';
-import { IArticle } from '../interfaces';
-
-const data: IArticle[] = [
-  {
-    author: 'Ilya Morozov',
-    content: 'CONTENT',
-    description: 'dsadsadsadsa',
-    title: 'dsadsadsadas',
-    url: 'URL',
-    urlToImage: 'www.getByText.ru',
-    id: Math.random() + 1,
-    totalResults: 1,
-  },
-];
-
-const article: { status: string; totalResults: number; articles: Array<IArticle> } = {
-  status: 'ok',
-  totalResults: 4552,
-  articles: data,
-};
+import { article } from './fakeData';
 
 (window as any).fetch = jest.fn(() =>
   Promise.resolve({
