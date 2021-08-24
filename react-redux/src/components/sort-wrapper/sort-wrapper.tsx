@@ -8,10 +8,7 @@ import './sort-wrapper.css';
 const SortWrapper: FC = () => {
   const dipatch = useDispatch();
   const onChangeSortBy = (e: ChangeEvent<HTMLInputElement>) => {
-    // if (e.target.value) {
     dipatch(sortValueAction(e.target.value));
-    // }
-    // dipatch(sortValueAction('publishedAt'));
   };
 
   const inputsRadioSort: IInpuntsRadio[] = [

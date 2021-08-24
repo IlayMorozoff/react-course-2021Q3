@@ -8,30 +8,14 @@ import './counter-page.css';
 const CounterPages: FC = () => {
   const newsPerPage = useSelector<RootState, string>((state) => state.homePage.newsPerPage);
   const currentPage = useSelector<RootState, string>((state) => state.homePage.currentPage);
-  // const allPagesValue = useSelector<RootState, number>((state) => state.homePage.allPagesValue);
   const dispatch = useDispatch();
 
   const onChangeNewsPerPage = (e: ChangeEvent<HTMLInputElement>) => {
-    // if (Number(e.target.value) <= 100 && e.target.value && e.target.value !== '0') {
     dispatch(newsPerPageAction(e.target.value));
-    // }
-    //  else {
-    //   dispatch(newsPerPageAction(''));
-    // }
   };
 
   const onChangeCurrentPage = (e: ChangeEvent<HTMLInputElement>) => {
-    // if (
-    //   e.target.value.length > 0
-    // &&
-    // e.target.value !== '0' &&
-    // Number(e.target.value) <= allPagesValue
-    // ) {
     dispatch(currentPageAction(e.target.value));
-    // }
-    // else {
-    //   dispatch(currentPageAction(''));
-    // }
   };
 
   return (

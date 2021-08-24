@@ -7,14 +7,9 @@ import './card-news-container.css';
 
 const CardsNewsContainer: FC = () => {
   const { articles } = useSelector<RootState, INewsState>((state) => state.fetchArticles);
-  // let news;
-  // if (articles) {
   const news = articles.map((article) => {
     return <CardNews {...article} key={article.id} />;
   });
-  // } else {
-  //   return null;
-  // }
   return <ul className="card_container">{news}</ul>;
 };
 

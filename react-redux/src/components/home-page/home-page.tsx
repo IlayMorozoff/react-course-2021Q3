@@ -39,8 +39,6 @@ const HomePage: FC = () => {
       </div>
     );
 
-  // const disableButton = !(check <= 100);
-
   const loader = loading ? <Loader /> : <CardsNewsContainer />;
 
   const errorFetch = error ? <ErrorFetch /> : null;
