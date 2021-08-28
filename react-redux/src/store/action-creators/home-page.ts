@@ -56,10 +56,10 @@ export const fetchNewsErrorAction = (payload: string): IFetchNewsErrorAction => 
 });
 
 export const fetchArticles = (
-  searchField: string = 'science',
-  pagePagination: string = '1',
-  newsPerPage: string = '10',
-  sortValue: string = 'publishedAt',
+  searchField: string = '',
+  pagePagination: string = '',
+  newsPerPage: string = '',
+  sortValue: string = '',
 ) => {
   return (dispatch: Dispatch<NewsAction | PageAction>) => {
     dispatch(fetchNewsAction());

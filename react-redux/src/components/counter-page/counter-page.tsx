@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import React from 'react';
 import { ChangeEvent, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentPageAction, newsPerPageAction } from '../../store/action-creators/home-page';
@@ -8,7 +9,6 @@ import './counter-page.css';
 const CounterPages: FC = () => {
   const newsPerPage = useSelector<RootState, string>((state) => state.homePage.newsPerPage);
   const currentPage = useSelector<RootState, string>((state) => state.homePage.currentPage);
-  // const currentPage = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   const allPagesValue = useSelector<RootState, number>((state) => state.homePage.allPagesValue);
   const dispatch = useDispatch();
 

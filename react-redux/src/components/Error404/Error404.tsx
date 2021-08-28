@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { FC } from 'react';
 import './Error404.css';
 import ErrorImg from '../../assets/error404.png';
+import React from 'react';
 
 const Error404: FC = () => {
   return (

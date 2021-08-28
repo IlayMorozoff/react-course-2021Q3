@@ -1,3 +1,4 @@
+import React from 'react';
 import { FC } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { useTransition, animated } from 'react-spring';
@@ -8,7 +9,7 @@ import Header from '../header/header';
 import HomePage from '../home-page/home-page';
 import './app.css';
 
-export const App: FC = () => {
+export const App: FC= () => {
   const location = useLocation();
   const transitions = useTransition(location, {
     from: {

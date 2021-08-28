@@ -3,6 +3,7 @@ import { IArticle } from '../interfaces';
 import './card-news.css';
 import defaultImage from '../../assets/default-image.jpg';
 import ErrorFetch from '../error/errorFetch';
+import React from 'react';
 
 const CardNews = (props: IArticle) => {
   const { author, content, description, title, urlToImage } = props;

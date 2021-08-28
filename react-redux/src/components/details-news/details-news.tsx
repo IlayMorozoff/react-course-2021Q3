@@ -5,6 +5,7 @@ import defaultImg from '../../assets/default-image.jpg';
 import { newsApi } from '../card-news-container/card-news-container';
 import { IArticle } from '../interfaces';
 import Loader from '../loader/loader';
+import React from 'react';
 
 const DetailsNews: FC = () => {
   const { title }: { title: string } = useParams();

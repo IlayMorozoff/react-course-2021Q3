@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+import React from 'react';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchArticles } from '../../store/action-creators/home-page';
@@ -18,13 +18,12 @@ const HomePage: FC = () => {
     RootState,
     IHomePageState
   >((state) => state.homePage);
-  // const pagePagination = useSelector<RootState, number>((state) => state.pagination.pagePagination);
   const { loading, error } = useSelector<RootState, INewsState>((state) => state.fetchArticles);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchArticles());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     dispatch(fetchArticles(searchValue, currentPage, newsPerPage, sortValue));
